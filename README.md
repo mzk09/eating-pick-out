@@ -1,24 +1,32 @@
-# README
+# Eating Pick Out
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+周辺の飲食店をマップ上で検索したり、外食になった時に飲食店を探しやすくするためのアプリ
 
-Things you may want to cover:
+### テーマを選んだ理由
+出張の際に飲食店を決めるとき、上司と一緒でなんでもいいと言われたためなかなか決まらなくてもどかしい思いをしました。
+出先で何を食べるか決まらない時に近くの飲食店をマップ上で探せたり、何系を食べる等の絞り込みを助けてくれるアプリがあったら便利だと思いました。
 
-* Ruby version
+### ターゲットユーザ
+飲食店を探している人
 
-* System dependencies
+### 主な利用シーン
+出先などの地理的に詳しくない場面で、付近の飲食店を探したい時
 
-* Configuration
+## 実装機能リスト
+https://docs.google.com/spreadsheets/d/1PE4qEu93Ujrk-pgxiOLjPaXp68lAlDOuku0TYVbBPxg/edit?usp=sharing
 
-* Database creation
+## 設計書
+<...>
 
-* Database initialization
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
