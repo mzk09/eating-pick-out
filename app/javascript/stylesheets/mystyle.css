@@ -1,0 +1,6 @@
+.admin_restaurant_image {
+  width: 220px;
+  height: 150px;
+
+  object-fit: cover;
+}
