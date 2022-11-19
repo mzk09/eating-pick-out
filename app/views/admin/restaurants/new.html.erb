@@ -1,6 +1,7 @@
+<div class="container">
 <%= form_with(model:@restaurant, url: admin_restaurants_path) do |f| %>
 	<%#= render 'layouts/error_messages', resource: item %>
-	<div class="flex">
+	<div class="flex align-items-center justify-content-center">
 		<div>
 			<%= f.label :image, "画像" %>
 			<div class="image_field">
@@ -52,3 +53,4 @@
 		</div>
 	</div>
 <% end %>
+</div>
