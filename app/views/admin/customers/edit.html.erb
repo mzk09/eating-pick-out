@@ -1,0 +1,31 @@
+<section class="inner">
+	<h2 class="section-ttl"><%= @customer.name %> さんの会員情報編集</h2>
+	<%= form_with model:@customer, url: admin_customer_path(@customer) do |f| %>
+		<%#= render 'layouts/error_messages', resource: @customer %>
+		<table class="customer_info customer_form">
+			<thead>
+				<th></th>
+				<th></th>
+				<th></th>
+			</thead>
+			<tbody>
+				<tr>
+					<td>ユーザーネーム</td>
+					<td><%= f.label :name, "ユーザーネーム", class: "customer_name" %> <%= f.text_field :name, :placeholder =>"#{@customer.name}" %></td>
+				</tr>
+				<tr>
+					<td>メールアドレス</td>
+					<td colspan="2"><%= f.email_field :email, autocomplete: "email", :placeholder =>"#{@customer.email}" %></td>
+				</tr>
+				<tr>
+					<td>会員ステータス</td>
+					<td><%= f.radio_button :is_deleted, true %><%= f.label :is_deleted, "退会済み", class: "text-active" %></td>
+					<td><%= f.radio_button :is_deleted, false %><%= f.label :is_deleted, "有効", class: "text-invalid" %></td>
+				</tr>
+				<tr>
+					<td colspan="3"><%= f.submit "更新", class: "btn btn-primary" %></td>
+				</tr>
+			</tbody>
+		</table>
+	<% end %>
+</section>

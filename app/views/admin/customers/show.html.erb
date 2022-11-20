@@ -1,0 +1,40 @@
+<section class="inner">
+	<h2 class="section-ttl"><%= @customer.name %>さんのページ</h2>
+	<table class="customer_info">
+		<thead>
+			<th></th>
+			<th></th>
+			<th></th>
+		</thead>
+		<tbody>
+			<tr>
+				<td>会員ID</td>
+				<td colspan="2"><%= @customer.id %></td>
+			</tr>
+			<tr>
+				<td>ユーザーネーム</td>
+				<td>(姓) <%= @customer.name %></td>
+			</tr>
+			<tr>
+				<td>メールアドレス</td>
+				<td colspan="2"><%= @customer.email %></td>
+			</tr>
+			<tr>
+			<tr>
+				<td>会員ステータス</td>
+				<td colspan="2">
+					<% if @customer.is_deleted? %>
+						<span class="text-active">退会済み	</span>
+					<% else %>
+						<span class="text-invalid">有効</span>
+					<% end %>
+				</td>
+			</tr>
+			<tr>
+				<td><%= link_to "編集", edit_admin_customer_path(@customer), class: "btn btn-success" %></td>
+				<td><%#= link_to "レビュー一覧を見る", admin_customer_orders_path(@customer), class: "btn btn-primary" %></td>
+			</tr>
+		</tbody>
+	</table>
+
+</section>
