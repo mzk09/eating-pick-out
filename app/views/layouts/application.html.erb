@@ -10,21 +10,63 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header>
-    <% if customer_signed_in? %>
-      <li>
-        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "新規登録", new_customer_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_customer_session_path %>
-      </li>
-    <% end %>
+  <body class="d-flex flex-column vh-100">
+    <div class="m-2 p-2 vh-100">
+    <header class="">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand py-2 px-5 border border-dark" href="/">
+            <i class="fad fa-utensils"></i>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expand="false" aria-label="Toggle navigation">
+            <sppan class="navbar-toggler-icon"></sppan>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <% if customer_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to "マイページ", customers_my_page_path,class:'nav-link text-dark border rounded m-1' %>
+                </li>
+                <li class="nav-item">
+                  <%#= link_to "飲食店を探す", items_path,class:'nav-link text-dark border rounded m-1' %>
+                </li>
+                <li>
+                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+                </li>
+              <% else %>
+                <% if admin_signed_in? %>
+                  <li class="nav-item">
+                    <%= link_to "店舗一覧",admin_restaurants_path,class:'nav-link text-dark border rounded m-1' %>
+                  </li>
+                  <li class="nav-item">
+                    <%#= link_to "会員一覧", admin_customers_path,class:'nav-link text-dark border rounded m-1' %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class:'nav-link text-dark border rounded m-1' %>
+                  </li>
+                <% else %>
+                  <li class="nav-item">
+                    <%#= link_to "飲食店を探す", about_path,class:'nav-link text-dark border rounded m-1' %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "新規登録", new_customer_registration_path,class:'nav-link text-dark border rounded m-1' %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "ログイン", new_customer_session_path,class:'nav-link text-dark border rounded m-1' %>
+                  </li>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
-    <%= yield %>
+    <main class="">
+      <%= yield %>
+    </main>
+    <footer class="">
+      </br></br>
+    </footer>
+    </div>
   </body>
 </html>
