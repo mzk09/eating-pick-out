@@ -3,4 +3,12 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  has_many :favorites,dependent: :destroy
+
+  scope :is_deleted, -> { where(is_deleted: false) }
+
+  validates :name, presence: true
+  validates :email, presence: true, uniqueness: true
+
 end

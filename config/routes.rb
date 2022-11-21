@@ -25,9 +25,9 @@ Rails.application.routes.draw do
     
     
     #resources :addresses, only: [:index, :create, :edit, :update, :destroy]
-    #resources :items, only: [:index, :show] do
-      #resources :cart_items, only: [:create, :update, :destroy]
-    #end
+    resources :restaurants, only: [ :show] do
+      resource :favorites, only: [:create, :destroy]
+    end
     #resources :cart_items, only: [:index]
     #resources :orders, only: [:new, :index, :create, :show]
     
