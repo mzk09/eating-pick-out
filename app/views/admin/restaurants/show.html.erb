@@ -1,2 +1,53 @@
-<h1>Admin::Restaurants#show</h1>
-<p>Find me in app/views/admin/restaurants/show.html.erb</p>
+<section class="inner">
+	<h2 class="section-ttl">店舗詳細</h2>
+	<div class="flex">
+		<div>
+			<div class="image_field">
+				<%= image_tag @restaurant.get_image(200,200), id: "img_prev", class: "admin_item_image" %>
+			</div>
+		</div>
+		<table class="admin_restaurant_info">
+			<thead>
+				<tr>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>店舗名</td>
+					<td><%= @restaurant.name %></td>
+				</tr>
+				<tr>
+					<td>営業時間</td>
+					<td><%= @restaurant.business_time %></td>
+				</tr>
+				<tr>
+					<td>平均予算</td>
+					<td><%= @restaurant.price%>円〜</td>
+				</tr>
+				<tr>
+					<td>電話</td>
+					<td><%= @restaurant.telephone_number %></td>
+				</tr>
+				<tr>
+					<td>住所</td>
+					<td><%= @restaurant.address %></td>
+				</tr>
+				<tr>
+					<td>表示ステータス</td>
+					<td>
+						<% if @restaurant.is_active? %>
+							<span class="text-active">表示中</span>
+						<% else %>
+							<span class="text-invalid">表示停止中</span>
+						<% end %>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="flex align-center pl5">
+			<%= link_to "編集する", edit_admin_restaurant_path(@restaurant), class: "btn btn-success" %>
+		</div>
+	</div>
+</section>

@@ -9,17 +9,14 @@ class Restaurant < ApplicationRecord
   validates:address,presence:true
   validates:is_active, inclusion: [true, false]
 
-  def get_image(*size)
+  def get_image(width,height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no-image.png')
       image.attach(io: File.open(file_path), filename: 'no-image.png', content_type: 'image/png')
     end
-    if !size.empty?
-      image.variant(resize: size)
-    else
-      image
-    end
+    image.variant(resize_to_limit:[width,height]).processed
   end
+
 
   def favorited_by?(customer)
     favorites.exists?(customer_id:customer.id)

@@ -1,2 +1,4 @@
-<h1>Admin::Restaurants#edit</h1>
-<p>Find me in app/views/admin/restaurants/edit.html.erb</p>
+<section class="inner">
+	<h2 class="section-ttl"><%= @restaurant.name %>の編集</h2>
+  <%= render 'form', restaurant: @restaurant, url: admin_restaurant_path(@restaurant), submit: '更新' %>
+</section>

@@ -17,17 +17,20 @@ class Admin::RestaurantsController < ApplicationController
   end
 
   def show
-    @restaurant = Restaurant.find(params[:id])
   end
 
   def edit
+  end
+
+  def update
+    @restaurant.update(restaurant_params) ? (redirect_to admin_restaurant_path(@restaurant)) : (render :edit)
   end
 
   private
   def restaurant_params
     params.require(:restaurant).permit(:name,:business_time,:price,:telephone_number,:address,:is_active,:image)
   end
-  
+
   def ensure_restaurant
     @restaurant = Restaurant.find(params[:id])
   end

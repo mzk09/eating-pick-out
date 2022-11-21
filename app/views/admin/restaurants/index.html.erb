@@ -1,2 +1,24 @@
-<h1>Admin::Restaurants#index</h1>
-<p>Find me in app/views/admin/restaurants/index.html.erb</p>
+<table class="admin_restaurants has_border">
+	<thead>
+		<tr>
+			<th>店舗ID</th>
+			<th>店舗名</th>
+			<th>表示ステータス</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @restaurants.each do |restaurant| %>
+			<tr>
+				<td class="text-center"><%= restaurant.id %></td>
+				<td><%= link_to restaurant.name, admin_restaurant_path(restaurant), class: "underline" %></td>
+				<td>
+					<% if restaurant.is_active? %>
+						<span class="text-active">表示中</span>
+					<% else %>
+						<span class="text-invalid">表示停止中</span>
+					<% end %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

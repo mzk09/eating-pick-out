@@ -1,2 +1,40 @@
-<h1>Public::Restaurants#show</h1>
-<p>Find me in app/views/public/restaurants/show.html.erb</p>
+<section class="inner">
+	<h2 class="section-ttl">店舗詳細</h2>
+	<div class="flex">
+		<div>
+			<div class="image_field">
+				<%= image_tag @restaurant.get_image(200,200), id: "img_prev", class: "admin_item_image" %>
+			</div>
+		</div>
+		<table class="admin_restaurant_info">
+			<thead>
+				<tr>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>店舗名</td>
+					<td><%= @restaurant.name %></td>
+				</tr>
+				<tr>
+					<td>営業時間</td>
+					<td><%= @restaurant.business_time %></td>
+				</tr>
+				<tr>
+					<td>平均予算</td>
+					<td><%= @restaurant.price%>円〜</td>
+				</tr>
+				<tr>
+					<td>電話</td>
+					<td><%= @restaurant.telephone_number %></td>
+				</tr>
+				<tr>
+					<td>住所</td>
+					<td><%= @restaurant.address %></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>
