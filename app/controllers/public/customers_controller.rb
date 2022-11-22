@@ -25,6 +25,12 @@ class Public::CustomersController < ApplicationController
     redirect_to root_path
   end
 
+  def favorites
+    @customer = Customer.find(params[:id])
+    favorites = Favorite.where(customer_id: @customer.id).pluck(:restaurant_id)
+    @favorite_restaurants = Restaurant.find(favorites)
+  end
+
   private
 
   def set_current_customer

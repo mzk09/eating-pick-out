@@ -15,7 +15,7 @@
     <header class="">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand py-2 px-5 border border-dark" href="/">
+          <a class="navbar-brand py-2 px-5 " href="/">
             <i class="fad fa-utensils"></i>
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expand="false" aria-label="Toggle navigation">
@@ -25,7 +25,7 @@
             <ul class="navbar-nav ml-auto">
               <% if customer_signed_in? %>
                 <li class="nav-item">
-                  <%= link_to "マイページ", mypage_path,class:'nav-link text-dark border rounded m-1' %>
+                  <%= link_to "マイページ", customer_path,class:'nav-link text-dark border rounded m-1' %>
                 </li>
                 <li class="nav-item">
                   <%#= link_to "飲食店を探す", items_path,class:'nav-link text-dark border rounded m-1' %>
