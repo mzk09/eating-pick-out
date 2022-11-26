@@ -25,7 +25,7 @@ class Public::CustomersController < ApplicationController
     redirect_to root_path
   end
 
-  def favorites
+  def favorites #いいねした店舗を一覧表示する
     @customer = Customer.find(params[:id])
     favorites = Favorite.where(customer_id: @customer.id).pluck(:restaurant_id)
     @favorite_restaurants = Restaurant.find(favorites)
