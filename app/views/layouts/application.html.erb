@@ -25,7 +25,7 @@
             <ul class="navbar-nav ml-auto">
               <% if customer_signed_in? %>
                 <li class="nav-item">
-                  <%= link_to "マイページ", customer_path,class:'nav-link text-dark border rounded m-1' %>
+                  <%= link_to "マイページ", customer_path(current_customer.id),class:'nav-link text-dark border rounded m-1' %>
                 </li>
                 <li class="nav-item">
                   <%#= link_to "飲食店を探す", items_path,class:'nav-link text-dark border rounded m-1' %>

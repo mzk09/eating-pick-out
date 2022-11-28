@@ -1,6 +1,7 @@
 class Public::RestaurantsController < ApplicationController
   def show
     @restaurant = Restaurant.find(params[:id])
+    @review = Review
   end
 
   private
