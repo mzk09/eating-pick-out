@@ -1,6 +1,7 @@
 class Restaurant < ApplicationRecord
   has_one_attached:image
   has_many :favorites,dependent: :destroy
+  has_many :reviews,dependent: :destroy
 
   validates:name,presence:true
   validates:business_time,presence:true

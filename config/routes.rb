@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     #resources :addresses, only: [:index, :create, :edit, :update, :destroy]
     resources :restaurants, only: [ :show] do
       resource :favorites, only: [:create, :destroy]
+      resources :reviews, only: [:create,:destroy]
     end
     #resources :cart_items, only: [:index]
     #resources :orders, only: [:new, :index, :create, :show]

@@ -5,6 +5,7 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :favorites,dependent: :destroy
+  has_many :reviews
 
   scope :is_deleted, -> { where(is_deleted: false) }
 
