@@ -54,6 +54,9 @@
 			<% @restaurant.reviews.each do |review| %>
 			<%= review.customer.name %>
 			<%= review.created_at.strftime('%Y/%m/%d') %><%= review.comment %>
+			<%if review.customer == current_customer %>
+				<%= link_to "delete",restaurant_review_path(review.restaurant,review),method: :delete %>
+			<% end %>
 			<% end %>
 		</div>
 		<div>
