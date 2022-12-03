@@ -1,13 +1,18 @@
 class Public::ReviewsController < ApplicationController
-  before_action :authenticate_customer!, only:[:create,:destroy
-]
+  before_action :authenticate_customer!, only:[:create,:destroy]
 
   def create
     restaurant = Restaurant.find(params[:restaurant_id])
     review = current_customer.reviews.new(review_params)
     review.restaurant_id = restaurant.id
-    review.save!
-    redirect_to restaurant_path(restaurant)
+    if review.save!
+      flash[:success] = "コメントしました"
+      #redirect_to restaurant_path(restaurant)
+      redirect_back(fallback_location: root_path)
+    else
+      flash[:success] = "コメントできませんでした"
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def destroy
