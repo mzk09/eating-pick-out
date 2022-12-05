@@ -30,6 +30,12 @@ class Public::CustomersController < ApplicationController
     favorites = Favorite.where(customer_id: @customer.id).pluck(:restaurant_id)
     @favorite_restaurants = Restaurant.find(favorites)
   end
+  
+  def reviews 
+    @customer = Customer.find(params[:id])
+    reviews = Review.where(customer_id: @customer.id).pluck(:restaurant_id)
+    @review_restaurants = Restaurant.find(reviews)
+  end
 
   private
 

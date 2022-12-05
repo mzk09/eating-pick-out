@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     #get 'search' => 'homes#search', as: 'search'
     resources :customers, only: [:index, :show, :edit, :update]
     resources:restaurants,only:[:index,:new,:create,:show,:edit,:update,:destroy]
+    resources:reviews,only:[:index,:edit,:update]
     #resources :genres, only: [:index, :create, :edit, :update]
     #resources :orders, only: [:index, :show, :update] do
       #resources :order_details, only: [:update]
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:show] do
       member do
         get :favorites
+        get :reviews
       end
     end
 

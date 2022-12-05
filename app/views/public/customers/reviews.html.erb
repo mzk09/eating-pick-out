@@ -1,6 +1,6 @@
-<div>いいね一覧</div>
+<div>レビュー一覧</div>
 <div>
-  <% @favorite_restaurants.each do |restaurant|%>
+  <% @review_restaurants.each do |restaurant|%>
     <%= link_to restaurant_path(restaurant.id) do %>
       <%=restaurant.name %>
     <% end %>

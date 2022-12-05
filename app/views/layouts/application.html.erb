@@ -43,6 +43,9 @@
                     <%= link_to "会員一覧", admin_customers_path,class:'nav-link text-dark border rounded m-1' %>
                   </li>
                   <li class="nav-item">
+                    <%= link_to "レビュー一覧", admin_reviews_path,class:'nav-link text-dark border rounded m-1' %>
+                  </li>
+                  <li class="nav-item">
                     <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class:'nav-link text-dark border rounded m-1' %>
                   </li>
                 <% else %>

@@ -2,7 +2,9 @@ class Review < ApplicationRecord
   belongs_to :customer
   belongs_to :restaurant
 
-    validates:comment,presence:true
+  validates:comment,presence:true
+  validates:is_active, inclusion: [true, false]
+
 
   #↓評価機能を付けるまではコメントアウト
   validates :rate, numericality: {

@@ -6,6 +6,7 @@
 	<h3>
 		登録情報
 		<%=link_to"いいね一覧",favorites_customer_path(@customer),class: "btn btn-success ml2" %>
+		<%=link_to"レビュー一覧",reviews_customer_path(@customer),class: "btn btn-success ml2" %>
 		<%= link_to "編集する", edit_information_path, class: "btn btn-success ml2" %>
 		<%= link_to "パスワードを変更する", edit_customer_registration_path, class: "btn btn-success ml2" %>
 	</h3>

@@ -6,6 +6,7 @@
 				<%= image_tag @restaurant.get_image(200,200), id: "img_prev", class: "admin_item_image" %>
 			</div>
 		</div>
+		<div id="review_avg" data-score="<%= @review_avg %>"></div>
 		<% if @restaurant.favorited_by?(current_customer) %>
 		<div>
 			<%= link_to restaurant_favorites_path(@restaurant),method: :delete do %>
@@ -50,7 +51,7 @@
 			</tbody>
 		</table>
 		<div>
-		  <div id="review_avg" data-score="<%= @review_avg %>"></div>
+			<div class="">レビュー詳細</div>
 			<% @restaurant.reviews.each do |review| %>
 			<%= review.customer.name %>
 			<div id="star-rate<%= review.id %>"></div>
