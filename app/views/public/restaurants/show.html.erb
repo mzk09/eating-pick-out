@@ -50,20 +50,22 @@
 			</tbody>
 		</table>
 		<div>
-			<%#= render 'rate_average' %>
+		  <div id="review_avg" data-score="<%= @review_avg %>"></div>
 			<% @restaurant.reviews.each do |review| %>
 			<%= review.customer.name %>
+			<div id="star-rate<%= review.id %>"></div>
 			<script>
-	      $('#star-rate<%= review.id%>').raty({
-  	      size      : 36,
-    	    starOff   : '<%= asset_path('star-off.png') %>',
-      	  starOn    : '<%= asset_path('star-on.png') %>',
-      	  starHalf: : '<%= asset_path('star-half.png') %>',
- 	  	    half      : true,
-  	      readOnly: true,
-        	score: <%= review.rate %>,
-      	});
-    	</script>
+        $('#star-rate<%= review.id %>').empty();
+        $('#star-rate<%= review.id%>').raty({
+          size      : 36,
+          starOff   : '<%= asset_path('star-off.png') %>',
+          starOn    : '<%= asset_path('star-on.png') %>',
+          half      : false,
+          readOnly: true,
+          score: <%= review.rate %>,
+        });
+      </script>
+
 			<%= review.created_at.strftime('%Y/%m/%d') %><%= review.comment %>
 			<%if review.customer == current_customer %>
 				<%= link_to "delete",restaurant_review_path(review.restaurant,review),method: :delete %>
@@ -72,23 +74,38 @@
 		</div>
 		<div>
 			<%= form_with model: [@restaurant, @review] do |f| %>
-			<div class="form-group row" id="star">
-    		<%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
-    		<%= f.hidden_field :rate, id: :review_star %>
-    	</div>
-    	<script>
-    	$('#star').raty({
-    		size     : 36,
-		    starOff:  '<%= asset_path('star-off.png') %>',
-		    starOn : '<%= asset_path('star-on.png') %>',
-    		starHalf: '<%= asset_path('star-half.png') %>',
-  		  scoreName: 'review[rate]',
-   			half: false,
-    	});
-  		</script>
-			<%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-			<%= f.submit "送信する" %>
-			<% end %>
+      	<div id="evaluate_stars"></div>
+      	<%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+      	<%= f.submit "送信する" %>
+      <% end %>
 		</div>
 	</div>
 </section>
+
+<script>
+  $('#review_avg').empty();
+  $('#review_avg').raty({
+    readOnly: true,
+    starOn: '<%= asset_path('star-on.png') %>',
+    starOff: '<%= asset_path('star-off.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+</script>
+
+<script>
+  $('#evaluate_stars').empty(); // Turbolinksで星が増殖する現象を解消
+  $('#evaluate_stars').raty({
+    starOff: '<%= asset_path('star-off.png') %>',
+    starOn: '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+      // 登録するモデル名とカラム名を記述
+      //  送信値として採用される
+    scoreName: 'review[rate]',
+    half: false,
+  });
+</script>
+
+

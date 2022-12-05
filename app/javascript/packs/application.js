@@ -15,8 +15,12 @@ import "../stylesheets/application"
 import '@fortawesome/fontawesome-free/js/all'
 
 import '../stylesheets/mystyle.css'
-//window.$ = window.jQuery = require('jquery');
-//require('packs/raty')
+window.$ = window.jQuery = require('jquery');
+require("./jquery.raty")
+
+
+
+'./jquery.raty'
 
 Rails.start()
 Turbolinks.start()

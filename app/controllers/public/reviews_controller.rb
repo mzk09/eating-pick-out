@@ -5,7 +5,7 @@ class Public::ReviewsController < ApplicationController
     restaurant = Restaurant.find(params[:restaurant_id])
     review = current_customer.reviews.new(review_params)
     review.restaurant_id = restaurant.id
-    if review.save!
+    if review.save
       flash[:success] = "コメントしました"
       #redirect_to restaurant_path(restaurant)
       redirect_back(fallback_location: root_path)
