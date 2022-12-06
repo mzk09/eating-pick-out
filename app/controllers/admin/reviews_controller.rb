@@ -7,20 +7,20 @@ class Admin::ReviewsController < ApplicationController
   end
 
   def edit
-    @customer = @reviews.customer
+    #@customer = @review.customer
   end
 
   def update
-    @review.update(review_params) ? (redirect_to admin_review_path(@review)) : (render :edit)
+    @review.update(review_params) ? (redirect_to admin_reviews_path) : (render :edit)
   end
 
   private
   def review_params
-    params.require(:review).permit(:comment,:rate,:customer_id,:restaurant_id)
+    params.require(:review).permit(:comment,:rate,:customer_id,:restaurant_id,:is_active)
   end
 
   def ensure_review
-    @reviews = Review.find(params[:id])
+    @review = Review.find(params[:id])
   end
 
 end

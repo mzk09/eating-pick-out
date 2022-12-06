@@ -1,7 +1,7 @@
 <section class="inner">
 	<h2 class="section-ttl">レビュー詳細・編集</h2>
 	<div class="flex">
-		<%= form_with(model:@review, url: admin_review_path) do |f| %>
+		<%= form_with(model:@review, url: admin_review_path(@review.id)) do |f| %>
 		<table class="admin_review_info">
 			<thead>
 				<tr>
@@ -13,6 +13,17 @@
 				<tr>
 					<td>評価</td>
 					<td><div id="star-rate"></div></td>
+					<script>
+						$('#star-rate').empty();
+						$('#star-rate').raty({
+							size      : 36,
+							starOff   : '<%= asset_path('star-off.png') %>',
+							starOn    : '<%= asset_path('star-on.png') %>',
+							half      : false,
+							readOnly  : true,
+							score: <%= @review.rate %>,
+						});
+					</script>
 				</tr>
 				<tr>
 					<td>コメント</td>
@@ -35,15 +46,3 @@
 		<% end %>
 	</div>
 </section>
-
-<script>
-        // $('#star-rate').empty();
-        // $('#star-rate').raty({
-        //   size      : 36,
-        //   starOff   : '<%#= asset_path('star-off.png') %>',
-        //   starOn    : '<%#= asset_path('star-on.png') %>',
-        //   half      : false,
-        //   readOnly: true,
-        //   score: <%#= @review.rate %>,
-        // });
-      </script>

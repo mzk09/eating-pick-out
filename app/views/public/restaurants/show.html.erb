@@ -52,6 +52,7 @@
 		</table>
 		<div>
 			<div class="">レビュー詳細</div>
+			<%# if @restaurant.review.is_active == true %>
 			<% @restaurant.reviews.each do |review| %>
 			<%= review.customer.name %>
 			<div id="star-rate<%= review.id %>"></div>
@@ -66,12 +67,12 @@
           score: <%= review.rate %>,
         });
       </script>
-
 			<%= review.created_at.strftime('%Y/%m/%d') %><%= review.comment %>
 			<%if review.customer == current_customer %>
 				<%= link_to "delete",restaurant_review_path(review.restaurant,review),method: :delete %>
 			<% end %>
 			<% end %>
+			<%# end %>
 		</div>
 		<div>
 			<%= form_with model: [@restaurant, @review] do |f| %>
