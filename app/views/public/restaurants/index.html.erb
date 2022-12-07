@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <div class="row content-wrapper">
+    <div class="shop-index-wrapper col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+      <h1>店舗一覧</h1>
+      <div class="col-xs-12">
+        <%#= render partial: 'filter' %>
+      </div>
+      <% if @shops.present? %>
+        <div class="shops">
+          <%= render partial: 'shop', collection: @shops, as: 'shop' %>
+        </div>
+        <%#= paginate @shops %>
+      <% else %>
+        <div id="shop-not-found">
+          <h4>条件に合う飲食店がありません</h4>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

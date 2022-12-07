@@ -14,7 +14,8 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root 'homes#top'
-
+    
+    #deviseのルーティングと被ってしまう？書き方質問すること
     resources :customers, only: [:show] do
       member do
         get :favorites
@@ -42,9 +43,6 @@ Rails.application.routes.draw do
 
   end
 
-
-  namespace :public do
-  end
 
   devise_for :customers,controllers:{
     registrations:"public/registrations",
