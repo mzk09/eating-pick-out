@@ -60,3 +60,6 @@ gem 'devise'
 gem 'jquery-rails'
 
 gem 'ransack'
+
+gem 'gmaps4rails'
+gem 'geocoder'

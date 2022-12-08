@@ -3,11 +3,38 @@
     <div class="shop-index-wrapper col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
       <h1>店舗一覧</h1>
       <div class="col-xs-12">
+        <%= render 'search', q: @q, url: restaurants_path %>
         <%#= render partial: 'filter' %>
       </div>
-      <% if @shops.present? %>
-        <div class="shops">
-          <%= render partial: 'shop', collection: @shops, as: 'shop' %>
+      <% if @restaurants.present? %>
+        <div class="restaurant">
+          <% @restaurants.each do |restaurant| %>
+          <div class="row">
+            <%#= link_to "", @restaurants, class: "stretched-link", data: { 'turbolinks': false }  %>
+            <!--<%# if maps_path? %>-->
+            <!--  <div id="result-label-<%#= "#{shop_counter+1}" %>" class="col-xs-1"></div>-->
+            <!--<%# end %>-->
+            <div class="restaurant-name col-xs-12">
+              <%= restaurant.name %>
+            </div>
+            <div class="features col-xs-12">
+              <%#= render partial: 'shared/features', collection: shop.features, as: 'feature' %>
+            </div>
+            <div class="col-xs-12 col-md-8">
+              <%= image_tag restaurant.get_image(200,200), id: "img_prev", class: "admin_item_image" %>
+            </div>
+            <div class="col-xs-12 col-md-4">
+              <dl>
+                <dt>住所</dt>
+                <dd><%= restaurant.address %></dd>
+                <dt>営業時間</dt>
+                <dd><%= restaurant.business_time %></dd>
+                <dt>定休日</dt>
+                <dd><%#= @restaurant.closed %></dd>
+              </dl>
+            </div>
+          </div>
+          <% end %>
         </div>
         <%#= paginate @shops %>
       <% else %>

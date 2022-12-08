@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
 
+   devise_for :customers,controllers:{
+    registrations:"public/registrations",
+    sessions:'public/sessions'
+  }
+
+  devise_for :admin,skip:[:registrations,:passwords],controllers:{
+    sessions:"admin/sessions"
+  }
+
   namespace :admin do
     #get 'top' => 'homes#top', as: 'top'
     #get 'search' => 'homes#search', as: 'search'
@@ -14,7 +23,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root 'homes#top'
-    
+
     #deviseのルーティングと被ってしまう？書き方質問すること
     resources :customers, only: [:show] do
       member do
@@ -34,7 +43,7 @@ Rails.application.routes.draw do
 
 
     #resources :addresses, only: [:index, :create, :edit, :update, :destroy]
-    resources :restaurants, only: [ :show] do
+    resources :restaurants, only: [ :show, :index] do
       resource :favorites, only: [:create, :destroy]
       resources :reviews, only: [:create,:destroy]
     end
@@ -44,13 +53,8 @@ Rails.application.routes.draw do
   end
 
 
-  devise_for :customers,controllers:{
-    registrations:"public/registrations",
-    sessions:'public/sessions'
-  }
 
-  devise_for :admin,skip:[:registrations,:passwords],controllers:{
-    sessions:"admin/sessions"
-  }
+
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
