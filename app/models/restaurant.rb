@@ -10,6 +10,9 @@ class Restaurant < ApplicationRecord
   validates:address,presence:true
   validates:is_active, inclusion: [true, false]
 
+  geocoded_by :address
+  after_validation :geocode
+
   def get_image(width,height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no-image.png')

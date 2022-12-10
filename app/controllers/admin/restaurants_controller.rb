@@ -28,7 +28,7 @@ class Admin::RestaurantsController < ApplicationController
 
   private
   def restaurant_params
-    params.require(:restaurant).permit(:name,:business_time,:price,:telephone_number,:address,:is_active,:image)
+    params.require(:restaurant).permit(:name,:business_time,:price,:telephone_number,:address,:is_active,:image, :latitude, :longitude)
   end
 
   def ensure_restaurant

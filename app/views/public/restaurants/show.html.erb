@@ -82,6 +82,46 @@
       <% end %>
 		</div>
 	</div>
+
+	<h3>飲食店を探す</h3>
+	<div class="map">
+	  <div id="map" style="width:500px; height:300px">
+	  </div>
+	</div>
+
+  <script>
+    function initMap(){
+    	let mapPosition = {lat: <%= @restaurant.latitude || 0 %> , lng: <%= @restaurant.longitude || 0 %> };
+      let map = new google.maps.Map(document.getElementById('map'), {
+      	// <%# if @restaurant.latitude && @restaurant.longitude %>
+      	// center: {lat: <%#= @restaurant.latitude %>, lng: <%#= @restaurant.longitude %> },
+      	// <%# end %>
+      	zoom: 15,
+      	center: mapPosition
+      });
+
+      let transitLayer = new google.maps.TransitLayer();
+    	transitLayer.setMap(map);
+
+    	let contentString = '<%= @restaurant.name %>';
+ 			let infowindow = new google.maps.InfoWindow({
+      	content: contentString
+    	});
+
+      let marker = new google.maps.Marker({
+    	  position: mapPosition,
+      	map: map,
+      	title: contentString
+    	});
+
+	    marker.addListener('click', function(){
+  	    infowindow.open(map, marker);
+    	});
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+
+
 </section>
 
 <script>
