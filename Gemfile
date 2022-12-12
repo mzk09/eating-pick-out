@@ -64,3 +64,6 @@ gem 'ransack'
 gem 'gmaps4rails'
 gem 'geocoder'
 gem 'dotenv-rails'
+gem 'geokit-rails'
+
+gem 'gon'

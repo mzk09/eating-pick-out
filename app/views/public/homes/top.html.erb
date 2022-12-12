@@ -9,15 +9,43 @@
       <div id="search-map"></div>
     </div>
     <div class=" col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-      <%= form_with scope: :lat_lng, url: maps_path, method: :get do |f| %>
+      <%= form_with scope: :lat_lng, url: root_path, method: :get do |f| %>
         <%= f.number_field :latitude, id: 'lat', step: '0.0000001', value: @latitude, type: 'hidden' %>
         <%= f.number_field :longitude, id: 'lng', step: '0.0000001', value: @longitude, type: 'hidden' %>
         <%= f.submit "周辺の飲食店を探す", class: "btn btn-map-search" %>
       <% end %>
     </div>
     <% if @restaurant.present? %>
-      <div class="shops col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-        <%= render partial: 'restaurants/shop', collection: @restaurant, as: 'restaurant' %>
+      <div class="restaurants col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+          <% @restaurants.each do |restaurant| %>
+          <div class="row">
+            <%#= link_to "", @restaurants, class: "stretched-link", data: { 'turbolinks': false }  %>
+            <!--<%# if maps_path? %>-->
+            <!--  <div id="result-label-<%#= "#{shop_counter+1}" %>" class="col-xs-1"></div>-->
+            <!--<%# end %>-->
+            <div class="restaurant-name col-xs-12">
+              <%= restaurant.name %>
+            </div>
+            <div class="features col-xs-12">
+              <%#= render partial: 'shared/features', collection: shop.features, as: 'feature' %>
+            </div>
+            <div class="col-xs-12 col-md-8">
+              <%= image_tag restaurant.get_image(200,200), id: "img_prev", class: "admin_item_image" %>
+            </div>
+            <div class="col-xs-12 col-md-4">
+              <dl>
+                <dt>住所</dt>
+                <dd><%= restaurant.address %></dd>
+                <dt>営業時間</dt>
+                <dd><%= restaurant.business_time %></dd>
+                <dt>定休日</dt>
+                <dd><%#= @restaurant.closed %></dd>
+              </dl>
+            </div>
+          <% end %>
+        </div>
+
+        <%#= render partial: 'restaurants/shop', collection: @restaurant, as: 'restaurant' %>
       </div>
     <% else %>
       <div class="not-found col-xs-12">
@@ -30,40 +58,3 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
 
 
-<h3>飲食店を探す</h3>
-	<div class="map">
-	  <div id="map" style="width:500px; height:300px">
-	  </div>
-	</div>
-
-  <script>
-    function initMap(){
-    	let mapPosition = {lat: <%= @restaurant.latitude || 0 %> , lng: <%= @restaurant.longitude || 0 %> };
-      let map = new google.maps.Map(document.getElementById('map'), {
-      	// <%# if @restaurant.latitude && @restaurant.longitude %>
-      	// center: {lat: <%#= @restaurant.latitude %>, lng: <%#= @restaurant.longitude %> },
-      	// <%# end %>
-      	zoom: 15,
-      	center: mapPosition
-      });
-
-      let transitLayer = new google.maps.TransitLayer();
-    	transitLayer.setMap(map);
-
-    	let contentString = '<%= @restaurant.name %>';
- 			let infowindow = new google.maps.InfoWindow({
-      	content: contentString
-    	});
-
-      let marker = new google.maps.Marker({
-    	  position: mapPosition,
-      	map: map,
-      	title: contentString
-    	});
-
-	    marker.addListener('click', function(){
-  	    infowindow.open(map, marker);
-    	});
-    }
-  </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>

@@ -13,6 +13,10 @@ class Restaurant < ApplicationRecord
   geocoded_by :address
   after_validation :geocode
 
+  acts_as_mappable default_units: :kms,
+                   lat_column_name: :latitude,
+                   lng_column_name: :longitude
+
   def get_image(width,height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no-image.png')
