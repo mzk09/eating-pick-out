@@ -66,4 +66,4 @@ gem 'geocoder'
 gem 'dotenv-rails'
 gem 'geokit-rails'
 
-gem 'gon'
+gem "gon"
