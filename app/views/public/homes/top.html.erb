@@ -1,12 +1,9 @@
 <% provide(:title, 'マップから探す') %>
-
 <div class="container-fluid">
   <div id="map-search-wrapper" class="row content-wrapper">
     <div class="col-xs-12">
       <h1>マップから探す</h1>
-    </div>
-    <div class=" col-xs-12">
-      <div id="search-map"></div>
+      <div id="search-map" style="height: 400px !important; width: 400px !important;"></div>
     </div>
     <div class=" col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
       <%= form_with scope: :lat_lng, url: root_path, method: :get do |f| %>
@@ -15,7 +12,7 @@
         <%= f.submit "周辺の飲食店を探す", class: "btn btn-map-search" %>
       <% end %>
     </div>
-    <% if @restaurant.present? %>
+    <% if @restaurants.present? %>
       <div class="restaurants col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
           <% @restaurants.each do |restaurant| %>
           <div class="row">
@@ -42,9 +39,8 @@
                 <dd><%#= @restaurant.closed %></dd>
               </dl>
             </div>
-          <% end %>
-        </div>
-
+          </div>
+        <% end %>
         <%#= render partial: 'restaurants/shop', collection: @restaurant, as: 'restaurant' %>
       </div>
     <% else %>
@@ -55,6 +51,6 @@
   </div>
 </div>
 <%= javascript_include_tag "search_map.js" %>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initSearchMap" async defer></script>
 
 

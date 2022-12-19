@@ -17,7 +17,8 @@ import '@fortawesome/fontawesome-free/js/all'
 import '../stylesheets/mystyle.css'
 window.$ = window.jQuery = require('jquery');
 require("./jquery.raty")
-
+// import "./search_map.js";
+// require("./search_map")
 
 
 './jquery.raty'

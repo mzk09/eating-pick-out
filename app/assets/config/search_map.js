@@ -1,9 +1,11 @@
 let lat = gon.lat;
+// let lat =  34.841411;
 let lng = gon.lng;
+// let lng = 136.5859378;
 let map = null
 let marker = null;
 let circle = null;
-let restaurants = gon.restaurants
+let restaurants = gon.restaurants;
 
 function initSearchMap() {
 
@@ -39,7 +41,7 @@ function initSearchMap() {
 
   if (restaurants) {
     //　検索結果の店舗情報の初期化
-    initRestaurntInfo();
+    initRestaurantInfo();
   }
 
   // マーカーの移動
@@ -59,7 +61,7 @@ function initSearchMap() {
   });
 }
 
-clickMap = (lat_lng, map) => {
+ clickMap = (lat_lng, map) => {
   lat = lat_lng.lat();
   lng = lat_lng.lng();
 
@@ -111,15 +113,11 @@ initRestaurantInfo = () => {
   for (let i = 0; i < restaurants.length; i++) {
     let labelText = labels[labelIndex++ % labels.length]
 
-    // 店舗の緯度・経度取得
-    markerLatLng = new google.maps.LatLng({
-      lat: parseFloat(restaurantMarkers[i]['latitude']),
-      lng: parseFloat(restaurants[i]['longitude'])
-    });
+    console.log(restaurantMarkers);
 
     // 店舗マーカーの作成
     restaurantMarkers[i] = new google.maps.Marker({
-      position: markerLatLng,
+      position: { lat: lat, lng: lng },
       map: map,
       label: {
         text: labelText,
@@ -135,6 +133,14 @@ initRestaurantInfo = () => {
         strokeWeight: 1.0
       },
       animation: google.maps.Animation.DROP
+    });
+
+    // 店舗の緯度・経度取得
+    markerLatLng = new google.maps.LatLng({
+      lat: parseFloat(restaurantMarkers[i]['latitude']),
+      lng: parseFloat(restaurants[i]['longitude'])
+      // lat: parseFloat(lat),
+      // lng: parseFloat(lng)
     });
 
     // 検索結果の店舗にマップのマーカーと同じラベル文字を追加

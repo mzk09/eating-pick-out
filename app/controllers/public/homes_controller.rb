@@ -13,8 +13,10 @@ class Public::HomesController < ApplicationController
     @latitude = gon.lat
     @longitude = gon.lng
     radius = 1.5
-    @restaurants = Restaurant.all.within(radius, origin: [gon.lat, gon.lng]).by_distance(origin: [gon.lat, gon.lng]).preload(:features, images_attachments: :blob)
+    @restaurants = Restaurant.all.within(radius, origin: [gon.lat, gon.lng]).by_distance(origin: [gon.lat, gon.lng])
     gon.restaurants = @restaurants
+    #gon.total_restaurants_count = @restaurants.all.count
+  
   end
 
   private
