@@ -144,8 +144,8 @@ initRestaurantInfo = () => {
     });
 
     // 検索結果の店舗にマップのマーカーと同じラベル文字を追加
-    let labelId = "result-label-" + (i + 1).toString();
-    document.getElementById(labelId).textContent = labelText;
+    //let labelId = "result-label-" + (i + 1).toString();
+    //document.getElementById(labelId).textContent = labelText;
   }
 }
 
