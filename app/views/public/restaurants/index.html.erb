@@ -6,9 +6,17 @@
         <%= render 'search', q: @q, url: restaurants_path %>
         <%#= render partial: 'filter' %>
       </div>
+      <% if params[:genre_id] %>
+			<h2 class="section-ttl"><%= @genre.name %>の商品一覧 (全<%= @all_restaurants_count %>件)</h2>
+			<% else %>
+			<h2 class="section-ttl">商品一覧 (全<%= @all_restaurants_count %>件)</h2>
+			<% end %>
+
+      <% if @restaurants.first %>
       <% if @restaurants.present? %>
         <div class="restaurant">
           <% @restaurants.each do |restaurant| %>
+          <%= link_to restaurant_path(restaurant) do %>
           <div class="row">
             <%#= link_to "", @restaurants, class: "stretched-link", data: { 'turbolinks': false }  %>
             <!--<%# if maps_path? %>-->
@@ -35,12 +43,16 @@
             </div>
           </div>
           <% end %>
+          <% end %>
         </div>
         <%#= paginate @shops %>
       <% else %>
         <div id="shop-not-found">
           <h4>条件に合う飲食店がありません</h4>
         </div>
+      <% end %>
+      <% else %>
+        <h3>対応する商品はありませんでした。</h3>
       <% end %>
     </div>
   </div>

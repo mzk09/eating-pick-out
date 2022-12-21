@@ -20,6 +20,10 @@
 					<td><%= @restaurant.name %></td>
 				</tr>
 				<tr>
+					<td>ジャンル</td>
+					<td><%= link_to @restaurant.genre.name, admin_restaurants_path(genre_id: @restaurant.genre_id), class: "underline" %></td>
+				</tr>
+				<tr>
 					<td>営業時間</td>
 					<td><%= @restaurant.business_time %></td>
 				</tr>

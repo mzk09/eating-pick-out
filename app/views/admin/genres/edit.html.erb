@@ -1,2 +1,6 @@
-<h1>Admin::Genres#edit</h1>
-<p>Find me in app/views/admin/genres/edit.html.erb</p>
+<div class="container">
+<section class="inner">
+	<h2 class="section-ttl">ジャンル新規登録</h2>
+  <%= render 'form', genre: @genre, url: admin_genre_path(@genre), submit: '更新' %>
+</section>
+</div>

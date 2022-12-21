@@ -16,7 +16,6 @@ class Public::HomesController < ApplicationController
     @restaurants = Restaurant.all.within(radius, origin: [gon.lat, gon.lng]).by_distance(origin: [gon.lat, gon.lng])
     gon.restaurants = @restaurants
     #gon.total_restaurants_count = @restaurants.all.count
-  
   end
 
   private

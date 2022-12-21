@@ -30,7 +30,7 @@
                   <%= link_to "マイページ", customer_path(current_customer.id),class:'nav-link text-dark border rounded m-1' %>
                 </li>
                 <li class="nav-item">
-                  <%#= link_to "飲食店を探す", items_path,class:'nav-link text-dark border rounded m-1' %>
+                  <%= link_to "飲食店一覧", restaurants_path,class:'nav-link text-dark border rounded m-1' %>
                 </li>
                 <li>
                   <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class:'nav-link text-dark border rounded m-1' %>
@@ -39,6 +39,9 @@
                 <% if admin_signed_in? %>
                   <li class="nav-item">
                     <%= link_to "店舗一覧",admin_restaurants_path,class:'nav-link text-dark border rounded m-1' %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "ジャンル一覧", admin_genres_path,class:'nav-link text-dark border rounded m-1' %>
                   </li>
                   <li class="nav-item">
                     <%= link_to "会員一覧", admin_customers_path,class:'nav-link text-dark border rounded m-1' %>
@@ -51,7 +54,7 @@
                   </li>
                 <% else %>
                   <li class="nav-item">
-                    <%#= link_to "飲食店を探す", about_path,class:'nav-link text-dark border rounded m-1' %>
+                    <%= link_to "飲食店一覧", restaurants_path,class:'nav-link text-dark border rounded m-1' %>
                   </li>
                   <li class="nav-item">
                     <%= link_to "新規登録", new_customer_registration_path,class:'nav-link text-dark border rounded m-1' %>

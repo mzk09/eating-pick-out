@@ -2,6 +2,7 @@ class Restaurant < ApplicationRecord
   has_one_attached:image
   has_many :favorites,dependent: :destroy
   has_many :reviews,dependent: :destroy
+  belongs_to :genre
 
   validates:name,presence:true
   validates:business_time,presence:true
@@ -9,6 +10,8 @@ class Restaurant < ApplicationRecord
   validates:telephone_number,presence:true
   validates:address,presence:true
   validates:is_active, inclusion: [true, false]
+
+  scope :where_genre_active, -> { joins(:genre).where(genres: { is_active: true }) }
 
   geocoded_by :address
   after_validation :geocode
@@ -25,9 +28,18 @@ class Restaurant < ApplicationRecord
     image.variant(resize_to_limit:[width,height]).processed
   end
 
+  def self.recommended
+    recommends = []
+    active_genres = Genre.only_active.includes(:restaurants)
+    active_genres.each do |genre|
+      item = genre.restaurants.last
+      recommends << restaurant if restaurant
+    end
+    recommends
+  end
 
   def favorited_by?(customer)
-    favorites.where(customer_id:customer).exists?
+    favorites.where(customer_id: customer).exists?
     # favorites.exists?(customer_id:customer.id)
   end
 

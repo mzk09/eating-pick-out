@@ -3,7 +3,14 @@ class Admin::RestaurantsController < ApplicationController
   before_action :ensure_restaurant, only: [:show, :edit, :update]
 
   def index
+    if params[:genre_id]
+      @genre = Genre.find(params[:genre_id])
+      all_restaurans = @genre.restaurants
+    else
+      all_restaurans = Restaurant.includes(:genre)
+    end
     @restaurants = Restaurant.all
+    @all_restaurans_count = all_restaurans.count
   end
 
   def new
@@ -28,7 +35,7 @@ class Admin::RestaurantsController < ApplicationController
 
   private
   def restaurant_params
-    params.require(:restaurant).permit(:name,:business_time,:price,:telephone_number,:address,:is_active,:image, :latitude, :longitude)
+    params.require(:restaurant).permit(:name,:business_time,:price,:telephone_number,:address,:is_active,:image, :latitude, :longitude,:genre_id)
   end
 
   def ensure_restaurant
