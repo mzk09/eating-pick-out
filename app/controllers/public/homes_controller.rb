@@ -1,5 +1,12 @@
 class Public::HomesController < ApplicationController
   def top
+    @genres = Genre.only_active.includes(:restaurants)
+    if params[:genre_id]
+      @genre = Genre.find(params[:genre_id])
+      all_restaurants = @genre.restaurants
+    else
+      all_restaurants = Restaurant.includes(:genre)
+    end
     # @q = Restaurant.ransack(params[:q])
     # @restaurants = @q.result(distinct: true)
     if params[:lat_lng]
@@ -13,8 +20,10 @@ class Public::HomesController < ApplicationController
     @latitude = gon.lat
     @longitude = gon.lng
     radius = 1.5
-    @restaurants = Restaurant.all.within(radius, origin: [gon.lat, gon.lng]).by_distance(origin: [gon.lat, gon.lng])
+    @restaurants = all_restaurants.all.within(radius, origin: [gon.lat, gon.lng]).by_distance(origin: [gon.lat, gon.lng]).preload(:genre)
     gon.restaurants = @restaurants
+    @q = all_restaurants.ransack(params[:q])
+
     #gon.total_restaurants_count = @restaurants.all.count
   end
 
