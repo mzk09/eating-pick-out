@@ -21,7 +21,7 @@
       <% if @restaurants.present? %>
         <div class="restaurant">
           <% @restaurants.each do |restaurant| %>
-          <%= link_to restaurant_path(restaurant) do %>
+          <%= link_to restaurant_path(restaurant),'data-turbolinks': false do %>
           <div class="row">
             <%#= link_to "", @restaurants, class: "stretched-link", data: { 'turbolinks': false }  %>
             <!--<%# if maps_path? %>-->

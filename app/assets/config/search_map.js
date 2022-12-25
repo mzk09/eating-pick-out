@@ -1,4 +1,6 @@
 {
+let geocoder
+
 let lat = gon.lat;
 // let lat =  34.841411;
 let lng = gon.lng;
@@ -10,6 +12,8 @@ let restaurants = gon.restaurants;
 
 function initSearchMap() {
 
+  geocoder = new google.maps.Geocoder()
+
   // マップの初期化
   map = new google.maps.Map(document.getElementById('search-map'), {
     center: { lat: lat, lng: lng },
@@ -19,6 +23,8 @@ function initSearchMap() {
     gestureHandling: 'greedy',
     zoom: 14,
   });
+
+
 
   // マーカーの初期化
   marker = new google.maps.Marker({
@@ -59,6 +65,54 @@ function initSearchMap() {
   // 現在地へ移動
   currentLocation.addEventListener('click', () => {
     moveCurrentLocation();
+  });
+}
+window.onload = function(){
+  let genre_search_class = document.getElementsByClassName('genre_search');
+  console.log(genre_search_class);
+  let genre_search_array = Array.from(genre_search_class);
+  genre_search_array.forEach(function(target){
+    target.addEventListener('click', function(e){
+      console.log('event');
+      console.log(e.target.href);
+      var href = e.target.href + '&lat_lng[latitude]=' + document.getElementById('lat').value + '&lat_lng[longitude]=' + document.getElementById('lng').value;
+      e.target.href = href;
+    });
+  });
+}
+
+//検索後のマップ作成
+let aft
+function getAddress(){
+  let inputAddress = document.getElementById('address').value;
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+        //マーカーが複数できないようにする
+        if (aft == true){
+            marker.setMap(null);
+        }
+
+        //新しくマーカーを作成する
+        // map.addListener(results[0].geometry.location);
+        //     marker = new google.maps.Marker({
+        //     map: map,
+        //     position: results[0].geometry.location,
+        // });
+
+        aft = true
+
+        document.getElementById('lat').value = results[0].geometry.location.lat();
+        document.getElementById('lng').value = results[0].geometry.location.lng();
+
+        //中心に移動
+        map.panTo(results[0].geometry.location);
+        // マーカーとサークルの更新
+        updateMarker(results[0].geometry.location, map);
+        updateCircle(results[0].geometry.location.lat(), results[0].geometry.location.lng(), map);
+
+} else {
+      alert('該当する結果がありませんでした：' + status);
+    }
   });
 }
 

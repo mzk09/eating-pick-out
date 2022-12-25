@@ -3,7 +3,9 @@
   <div id="map-search-wrapper" class="row content-wrapper">
     <div class="col-xs-12">
       <h1>マップから探す</h1>
-      <%= render 'search', q: @q, url: root_path %>
+      <input id="address" type="textbox" placeholder='位置情報、住所、地名等' >
+      <input type="button" value="検索" onclick="getAddress()">
+      <%#= render 'search', q: @q, url: root_path %>
       <div id="search-map" style="height: 400px !important; width: 400px !important;"></div>
     </div>
     <div class=" col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
@@ -15,7 +17,7 @@
     </div>
     <div class="col-xs-12">
       <% @genres.each do |genre| %>
-        <%= link_to genre.name, root_path(genre_id: genre.id),'data-turbolinks': false %>
+        <%= link_to genre.name, root_path(genre_id: genre.id),'data-turbolinks': false, class: "genre_search" %>
       <% end %>
     </div>
     <% if @restaurants.present? %>
@@ -23,7 +25,7 @@
       <div class="restaurants col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
           <% @restaurants.each do |restaurant| %>
           <div class="row">
-            <%= link_to restaurant_path(restaurant) do %>
+            <%= link_to restaurant_path(restaurant),'data-turbolinks': false do %>
             <%#= link_to "", @restaurants, class: "stretched-link", data: { 'turbolinks': false }  %>
             <!--<%# if maps_path? %>-->
             <!--  <div id="result-label-<%#= "#{shop_counter+1}" %>" class="col-xs-1"></div>-->
@@ -63,5 +65,6 @@
   </div>
 </div>
 <%= javascript_include_tag "search_map.js" %>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initSearchMap" async defer></script>
 
 
