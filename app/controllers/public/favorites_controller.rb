@@ -1,4 +1,6 @@
 class Public::FavoritesController < ApplicationController
+  before_action :authenticate_customer!, only:[:create,:destroy]
+
 
   def create
     restaurant = Restaurant.find(params[:restaurant_id])

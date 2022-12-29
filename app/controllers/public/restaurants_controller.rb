@@ -1,9 +1,10 @@
 class Public::RestaurantsController < ApplicationController
   def show
+    @genres = Genre.only_active
     @restaurant = Restaurant.where_genre_active.find(params[:id])
+
     @review = Review
     @review_avg = Review.where(restaurant_id: params[:id]).average(:rate)
-    @genres = Genre.only_active
   end
 
   def index

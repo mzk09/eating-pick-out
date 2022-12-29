@@ -1,70 +1,13 @@
-<% provide(:title, 'マップから探す') %>
-<div class="container-fluid">
-  <div id="map-search-wrapper" class="row content-wrapper">
+<div class="container">
+  <div class="row top-content text-center">
     <div class="col-xs-12">
-      <h1>マップから探す</h1>
-      <input id="address" type="textbox" placeholder='位置情報、住所、地名等' >
-      <input type="button" value="検索" onclick="getAddress()">
-      <%#= render 'search', q: @q, url: root_path %>
-      <div id="search-map" style="height: 400px !important; width: 400px !important;"></div>
-    </div>
-    <div class=" col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-      <%= form_with scope: :lat_lng, url: root_path, method: :get do |f| %>
-        <%= f.number_field :latitude, id: 'lat', step: '0.0000001', value: @latitude, type: 'hidden' %>
-        <%= f.number_field :longitude, id: 'lng', step: '0.0000001', value: @longitude, type: 'hidden' %>
-        <%= f.submit "周辺の飲食店を探す", class: "btn btn-map-search" %>
-      <% end %>
+      <h1>EatingPickOut</h1>
     </div>
     <div class="col-xs-12">
-      <% @genres.each do |genre| %>
-        <%= link_to genre.name, root_path(genre_id: genre.id),'data-turbolinks': false, class: "genre_search" %>
-      <% end %>
+      <h3>周辺の飲食店をマップ上で探せます</h3>
     </div>
-    <% if @restaurants.present? %>
-      <% if @restaurants.first %>
-      <div class="restaurants col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-          <% @restaurants.each do |restaurant| %>
-          <div class="row">
-            <%= link_to restaurant_path(restaurant),'data-turbolinks': false do %>
-            <%#= link_to "", @restaurants, class: "stretched-link", data: { 'turbolinks': false }  %>
-            <!--<%# if maps_path? %>-->
-            <!--  <div id="result-label-<%#= "#{shop_counter+1}" %>" class="col-xs-1"></div>-->
-            <!--<%# end %>-->
-            <div class="restaurant-name col-xs-12">
-              <%= restaurant.name %>
-            </div>
-            <div class="features col-xs-12">
-              <%#= render partial: 'shared/features', collection: shop.features, as: 'feature' %>
-            </div>
-            <div class="col-xs-12 col-md-8">
-              <%= image_tag restaurant.get_image(200,200), id: "img_prev", class: "admin_item_image" %>
-            </div>
-            <div class="col-xs-12 col-md-4">
-              <dl>
-                <dt>住所</dt>
-                <dd><%= restaurant.address %></dd>
-                <dt>営業時間</dt>
-                <dd><%= restaurant.business_time %></dd>
-                <dt>定休日</dt>
-                <dd><%#= @restaurant.closed %></dd>
-              </dl>
-            </div>
-            <% end %>
-          </div>
-        <% end %>
-        <%#= render partial: 'restaurants/shop', collection: @restaurant, as: 'restaurant' %>
-      </div>
-      <% else %>
-        <h3>対応する飲食店はありませんでした。</h3>
-      <% end %>
-    <% else %>
-      <div class="not-found col-xs-12">
-        <h4>条件に合う飲食店がありません</h4>
-      </div>
-    <% end %>
+    <div class="col-xs-12">
+      <%= link_to "マップから探す", map_search_path,class: "btn btn-primary",'data-turbolinks': false %>
+    </div>
   </div>
 </div>
-<%= javascript_include_tag "search_map.js" %>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initSearchMap" async defer></script>
-
-

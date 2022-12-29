@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 class Public::PasswordsController < Devise::PasswordsController
+  # before_action :ensure_normal_customer, only: :create
+  
+  # def ensure_normal_customer
+  #   if params[:customer][:email].downcase == 'guest@example.com'
+  #     redirect_to new_customer_session_path, alert: 'ゲストユーザーのパスワード再設定はできません'
+  #   end
+  # end
+  
   # GET /resource/password/new
   # def new
   #   super
@@ -23,9 +31,9 @@ class Public::PasswordsController < Devise::PasswordsController
 
   # protected
 
-  # def after_resetting_password_path_for(resource)
-  #   super(resource)
-  # end
+  def after_resetting_password_path_for(resource)
+    super(resource)
+  end
 
   # The path used after sending reset password instructions
   # def after_sending_reset_password_instructions_path_for(resource_name)

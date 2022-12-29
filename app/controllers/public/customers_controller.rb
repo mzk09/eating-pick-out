@@ -1,6 +1,7 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
-  before_action :set_current_customer
+  before_action :set_current_customer,only: [:show, :edit, :update]
+  before_action :check_guest_customer, only: [:edit]
 
   def show
   end
@@ -10,7 +11,7 @@ class Public::CustomersController < ApplicationController
 
   def update
     if @customer.update(customer_params)
-      redirect_to mypage_path, notice: '会員情報の更新が完了しました。'
+      redirect_to customer_path(@customer), notice: '会員情報の更新が完了しました。'
     else
       render :edit
     end
@@ -30,8 +31,9 @@ class Public::CustomersController < ApplicationController
     favorites = Favorite.where(customer_id: @customer.id).pluck(:restaurant_id)
     @favorite_restaurants = Restaurant.find(favorites)
   end
-  
-  def reviews 
+
+  def reviews
+    #activ_review = Review.is_active
     @customer = Customer.find(params[:id])
     reviews = Review.where(customer_id: @customer.id).pluck(:restaurant_id)
     @review_restaurants = Restaurant.find(reviews)
@@ -44,6 +46,15 @@ class Public::CustomersController < ApplicationController
   end
 
   def customer_params
-    params.require(:customer).permit(:last_name, :first_name, :first_name_kana, :last_name_kana, :email, :postal_code, :address, :telephone_number)
+    params.require(:customer).permit(:name, :email, :is_deleted, :password, :password_confirmation)
   end
+
+  def check_guest_customer
+    guest_customer = Customer.find_by(email: "guest@example.com")
+    if @customer == guest_customer
+      flash[:danger] = 'ゲストユーザーはアカウント設定を変更できません'
+      redirect_to customer_path(guest_customer)
+    end
+  end
+
 end

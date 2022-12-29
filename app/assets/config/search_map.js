@@ -67,6 +67,8 @@ function initSearchMap() {
     moveCurrentLocation();
   });
 }
+
+//絞込み表示
 window.onload = function(){
   let genre_search_class = document.getElementsByClassName('genre_search');
   console.log(genre_search_class);
@@ -195,6 +197,8 @@ initRestaurantInfo = () => {
       },
       animation: google.maps.Animation.DROP
     });
+
+    console.log(labelText)
 
 
     // 検索結果の店舗にマップのマーカーと同じラベル文字を追加

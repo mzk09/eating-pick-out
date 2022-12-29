@@ -15,8 +15,18 @@ class Public::ReviewsController < ApplicationController
     end
   end
 
-  def destroy
-    Review.find(params[:id]).destroy
+  # def destroy
+  #   @review = Review.find(params[:id])
+  #   @review.update!(is_active: false)
+  #   #Review.find(params[:id]).destroy
+  #   redirect_to restaurant_path(params[:restaurant_id])
+  # end
+
+  #レビューの削除を倫理削除に変更
+  def update
+    @review = Review.find(params[:id])
+    @review.update!(is_active: false)
+    #Review.find(params[:id]).destroy
     redirect_to restaurant_path(params[:restaurant_id])
   end
 

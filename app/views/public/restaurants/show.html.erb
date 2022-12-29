@@ -58,6 +58,7 @@
 			<div class="">レビュー詳細</div>
 			<%# if @restaurant.review.is_active == true %>
 			<% @restaurant.reviews.each do |review| %>
+			<% if review.is_active == true %>
 			<%= review.customer.name %>
 			<div id="star-rate<%= review.id %>"></div>
 			<script>
@@ -71,9 +72,11 @@
           score: <%= review.rate %>,
         });
       </script>
-			<%= review.created_at.strftime('%Y/%m/%d') %><%= review.comment %>
+			<%= review.created_at.strftime('%Y/%m/%d') %>
+			<%= review.comment %>
 			<%if review.customer == current_customer %>
-				<%= link_to "delete",restaurant_review_path(review.restaurant,review),method: :delete %>
+				<%= link_to "delete",restaurant_review_path(review.restaurant,review),method: :patch, data: {confirm: "削除しますか？"} %>
+			<% end %>
 			<% end %>
 			<% end %>
 			<%# end %>

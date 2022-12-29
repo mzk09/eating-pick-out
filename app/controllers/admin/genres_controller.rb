@@ -24,7 +24,7 @@ class Admin::GenresController < ApplicationController
   def update
     if @genre.update(genre_params)
       unless @genre.is_active
-        @genre.items.update_all(is_active: false)
+        @genre.restaurants.update_all(is_active: false)
       end
       redirect_to admin_genres_path
     else
@@ -36,7 +36,7 @@ class Admin::GenresController < ApplicationController
   private
 
   def genre_params
-    params.require(:genre).permit(:name,:genre_id)
+    params.require(:genre).permit(:name,:genre_id,:is_active)
   end
 
   def ensure_genre

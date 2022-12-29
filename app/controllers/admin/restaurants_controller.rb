@@ -20,7 +20,7 @@ class Admin::RestaurantsController < ApplicationController
   def create
     @restaurant = Restaurant.new(restaurant_params)
     @restaurant.save
-    redirect_to admin_restaurants_path
+    redirect_to admin_restaurant_path(@restaurant)
   end
 
   def show

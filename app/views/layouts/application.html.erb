@@ -27,10 +27,13 @@
             <ul class="navbar-nav ml-auto">
               <% if customer_signed_in? %>
                 <li class="nav-item">
-                  <%= link_to "マイページ", customer_path(current_customer.id),class:'nav-link text-dark border rounded m-1' %>
+                  <%= link_to "マップから探す", map_search_path,class:'nav-link text-dark border rounded m-1' %>
                 </li>
                 <li class="nav-item">
                   <%= link_to "飲食店一覧", restaurants_path,class:'nav-link text-dark border rounded m-1' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "マイページ", customer_path(current_customer.id),class:'nav-link text-dark border rounded m-1' %>
                 </li>
                 <li>
                   <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class:'nav-link text-dark border rounded m-1' %>
@@ -53,6 +56,9 @@
                     <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class:'nav-link text-dark border rounded m-1' %>
                   </li>
                 <% else %>
+                <li class="nav-item">
+                  <%= link_to "マップから探す", map_search_path,class:'nav-link text-dark border rounded m-1' %>
+                </li>
                   <li class="nav-item">
                     <%= link_to "飲食店一覧", restaurants_path,class:'nav-link text-dark border rounded m-1' %>
                   </li>
@@ -62,6 +68,9 @@
                   <li class="nav-item">
                     <%= link_to "ログイン", new_customer_session_path,class:'nav-link text-dark border rounded m-1' %>
                   </li>
+                  <li class="nav-item">
+                    <%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, method: :post ,class:'nav-link text-dark border rounded m-1' %>
+                  </li>
                 <% end %>
               <% end %>
             </ul>
@@ -70,6 +79,9 @@
       </nav>
     </header>
     <main class="">
+      <% flash.each do |message_type, message| %>
+        <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+      <% end %>
       <%= yield %>
     </main>
     <footer class="">

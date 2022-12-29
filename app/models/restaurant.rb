@@ -32,7 +32,7 @@ class Restaurant < ApplicationRecord
     recommends = []
     active_genres = Genre.only_active.includes(:restaurants)
     active_genres.each do |genre|
-      item = genre.restaurants.last
+      restaurant = genre.restaurants.last
       recommends << restaurant if restaurant
     end
     recommends

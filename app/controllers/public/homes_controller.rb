@@ -1,5 +1,9 @@
 class Public::HomesController < ApplicationController
+
   def top
+  end
+
+  def map_search
     @genres = Genre.only_active.includes(:restaurants).sort
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
@@ -22,8 +26,6 @@ class Public::HomesController < ApplicationController
     radius = 1.5
     @restaurants = all_restaurants.all.within(radius, origin: [gon.lat, gon.lng]).by_distance(origin: [gon.lat, gon.lng]).preload(:genre)
     gon.restaurants = @restaurants
-
-
     #gon.total_restaurants_count = @restaurants.all.count
   end
 

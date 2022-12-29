@@ -1,8 +1,30 @@
 <div>レビュー一覧</div>
 <div>
-  <% @review_restaurants.each do |restaurant|%>
-    <%= link_to restaurant_path(restaurant.id) do %>
-      <%=restaurant.name %>
+  <% @customer.reviews.each do |review|%>
+  <% if review.is_active == true %>
+  <div class="">
+    <div class="">
+    <%= link_to restaurant_path(review.restaurant.id) do %>
+      <%= review.restaurant.name %>
     <% end %>
+    </div>
+    <div id="star-rate<%= review.id %>"></div>
+			<script>
+        $('#star-rate<%= review.id %>').empty();
+        $('#star-rate<%= review.id%>').raty({
+          size      : 36,
+          starOff   : '<%= asset_path('star-off.png') %>',
+          starOn    : '<%= asset_path('star-on.png') %>',
+          half      : false,
+          readOnly: true,
+          score: <%= review.rate %>,
+        });
+      </script>
+    <div class="">
+      <%= review.comment %>
+    </div>
+    <%= link_to "delete",restaurant_review_path(review.restaurant,review),method: :patch, data: {confirm: "削除しますか？"} %>
+  </div>
+  <% end %>
   <% end %>
 </div>

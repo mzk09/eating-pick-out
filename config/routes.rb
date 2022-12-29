@@ -2,8 +2,13 @@ Rails.application.routes.draw do
 
    devise_for :customers,controllers:{
     registrations:"public/registrations",
-    sessions:'public/sessions'
+    sessions:'public/sessions',
+    passwords: "public/passwords"
   }
+
+  devise_scope :customer do
+    post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
 
   devise_for :admin,skip:[:registrations,:passwords],controllers:{
     sessions:"admin/sessions"
@@ -23,8 +28,16 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root 'homes#top'
+    get 'map_search' => 'homes#map_search', as: 'map_search'
 
-    #deviseのルーティングと被ってしまう？書き方質問すること
+
+    # customers/editのようにするとdeviseのルーティングとかぶってしまうためinformationを付け加えている。
+    get 'customers/information/edit' => 'customers#edit', as: 'edit_information'
+    patch 'customers/information' => 'customers#update', as: 'update_information'
+    get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'confirm_unsubscribe'
+    put 'customers/information' => 'customers#update'
+    patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
+
     resources :customers, only: [:show] do
       member do
         get :favorites
@@ -32,20 +45,11 @@ Rails.application.routes.draw do
       end
     end
 
-    #get 'customers/mypage' => 'customers#show', as: 'mypage'
-    # customers/editのようにするとdeviseのルーティングとかぶってしまうためinformationを付け加えている。
-    get 'customers/information/edit' => 'customers#edit', as: 'edit_information'
-    patch 'customers/information' => 'customers#update', as: 'update_information'
-    get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'confirm_unsubscribe'
-    put 'customers/information' => 'customers#update'
-    patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
-    #delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all_cart_items'
-
 
     #resources :addresses, only: [:index, :create, :edit, :update, :destroy]
     resources :restaurants, only: [ :show, :index] do
       resource :favorites, only: [:create, :destroy]
-      resources :reviews, only: [:create,:destroy]
+      resources :reviews, only: [:create,:destroy,:update]
     end
     #resources :cart_items, only: [:index]
     #resources :orders, only: [:new, :index, :create, :show]
