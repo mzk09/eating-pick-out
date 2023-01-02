@@ -1,13 +1,7 @@
 <div class="container">
-  <div class="row top-content text-center">
-    <div class="col-xs-12">
-      <h1>EatingPickOut</h1>
+    <h1 class=title>EatingPickOut</h1>
+    <h6>周辺の飲食店をマップ上で探せます</h6>
+    <div class="btnsearch">
+      <%= link_to "マップから探す", map_search_path,class: "btn",'data-turbolinks': false %>
     </div>
-    <div class="col-xs-12">
-      <h3>周辺の飲食店をマップ上で探せます</h3>
-    </div>
-    <div class="col-xs-12">
-      <%= link_to "マップから探す", map_search_path,class: "btn btn-primary",'data-turbolinks': false %>
-    </div>
-  </div>
 </div>

@@ -6,70 +6,68 @@
     <%= include_gon %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="d-flex flex-column vh-100">
-    <div class="m-2 p-2 vh-100">
-    <header class="">
+  <body>
+    <header>
       <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <a class="navbar-brand py-2 px-5 " href="/" data-turbolinks="false">
-            <i class="fas fa-utensils"></i>
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/" data-turbolinks="false">
+            <i class="fas fa-utensils"></i>  EatingPickOut
           </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expand="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expand="false" aria-label="Toggle navigation">
             <sppan class="navbar-toggler-icon"></sppan>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
+            <ul class="nav navbar-nav">
               <% if customer_signed_in? %>
                 <li class="nav-item">
-                  <%= link_to "マップから探す", map_search_path,class:'nav-link text-dark border rounded m-1' %>
+                  <%= link_to "マップから探す", map_search_path,class:'navlink' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "飲食店一覧", restaurants_path,class:'nav-link text-dark border rounded m-1' %>
+                  <%= link_to "飲食店一覧", restaurants_path,class:'navlink' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "マイページ", customer_path(current_customer.id),class:'nav-link text-dark border rounded m-1' %>
+                  <%= link_to "マイページ", customer_path(current_customer.id),class:'navlink' %>
                 </li>
                 <li>
-                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class:'nav-link text-dark border rounded m-1' %>
+                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class:'navlink' %>
                 </li>
               <% else %>
                 <% if admin_signed_in? %>
                   <li class="nav-item">
-                    <%= link_to "店舗一覧",admin_restaurants_path,class:'nav-link text-dark border rounded m-1' %>
+                    <%= link_to "店舗一覧",admin_restaurants_path,class:'navlink' %>
                   </li>
                   <li class="nav-item">
-                    <%= link_to "ジャンル一覧", admin_genres_path,class:'nav-link text-dark border rounded m-1' %>
+                    <%= link_to "ジャンル一覧", admin_genres_path,class:'navlink' %>
                   </li>
                   <li class="nav-item">
-                    <%= link_to "会員一覧", admin_customers_path,class:'nav-link text-dark border rounded m-1' %>
+                    <%= link_to "会員一覧", admin_customers_path,class:'navlink' %>
                   </li>
                   <li class="nav-item">
-                    <%= link_to "レビュー一覧", admin_reviews_path,class:'nav-link text-dark border rounded m-1' %>
+                    <%= link_to "レビュー一覧", admin_reviews_path,class:'navlink' %>
                   </li>
                   <li class="nav-item">
-                    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class:'nav-link text-dark border rounded m-1' %>
+                    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class:'navlink' %>
                   </li>
                 <% else %>
                 <li class="nav-item">
-                  <%= link_to "マップから探す", map_search_path,class:'nav-link text-dark border rounded m-1' %>
+                  <%= link_to "マップから探す", map_search_path,class:'navlink' %>
                 </li>
                   <li class="nav-item">
-                    <%= link_to "飲食店一覧", restaurants_path,class:'nav-link text-dark border rounded m-1' %>
+                    <%= link_to "飲食店一覧", restaurants_path,class:'navlink' %>
                   </li>
                   <li class="nav-item">
-                    <%= link_to "新規登録", new_customer_registration_path,class:'nav-link text-dark border rounded m-1' %>
+                    <%= link_to "新規登録", new_customer_registration_path,class:'navlink' %>
                   </li>
                   <li class="nav-item">
-                    <%= link_to "ログイン", new_customer_session_path,class:'nav-link text-dark border rounded m-1' %>
+                    <%= link_to "ログイン", new_customer_session_path,class:'navlink' %>
                   </li>
                   <li class="nav-item">
-                    <%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, method: :post ,class:'nav-link text-dark border rounded m-1' %>
+                    <%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, method: :post ,class:'navlink' %>
                   </li>
                 <% end %>
               <% end %>
@@ -78,16 +76,15 @@
         </div>
       </nav>
     </header>
-    <main class="">
+    <main>
       <% flash.each do |message_type, message| %>
         <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
       <% end %>
       <%= yield %>
     </main>
-    <footer class="">
+    <footer>
       </br></br>
     </footer>
-    </div>
     <!--<script src="https://maps.googleapis.com/maps/api/js?key=<%#= ENV['API_KEY'] %>&callback=initSearchMap" async defer></script>-->
   </body>
 </html>

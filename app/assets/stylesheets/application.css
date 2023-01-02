@@ -13,3 +13,133 @@
  *= require_tree .
  *= require_self
  */
+
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+
+  font-family: "Hiragino Maru Gothic ProN W4";
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  width: 90%; /* 横幅90% */
+  padding: 15px 0;
+  margin: 0 auto;
+}
+
+.navlink {
+  list-style: none;
+  display: inline-block;
+  margin: 8px 20px;
+  color: dimgray;
+}
+
+main {
+  width: 90%;
+  display: flex; /* Flexboxの利用 */
+  justify-content: center; /* 要素の横並び・中央寄せ */
+  margin: 0 auto; /* 中央寄せ（左右に余白がないとできない） */
+}
+
+h1,h2,h3 {
+  color: slategray;
+  padding: 15px 0;
+  display: flex;
+  justify-content:space-around;
+}
+
+h4,h6 {
+  color: darkgray;
+  padding: 20px 0;
+  display: flex;
+  justify-content:space-around;
+}
+
+
+.btnsearch a {
+  background-color: slategray;
+  color: white;
+  display: flex;
+  justify-content:space-around;
+  max-width: 200px;
+  margin: 0 auto;
+  border-radius: 50px;
+}
+
+.search-content {
+  width: auto;
+  padding: 10px 0;
+  display: flex;
+  justify-content:center;
+  margin: 10px auto;
+}
+
+input[type="textbox"] {
+  width: 300px;
+}
+
+.map {
+  width: auto;
+  padding: 20px 0;
+  display: flex;
+  justify-content:center;
+  margin: 15px auto;
+}
+
+
+.map-btn {
+  border-radius: 50px;
+  background-color: darkgray;
+  color: white;
+  height: 40px;
+  width: 180px;
+  margin: 0 10px;
+  padding-left: 10px;
+}
+
+.map-search-btn {
+  background-color: slategray;
+  color: white;
+  border-radius: 50px;
+  height: 50px;
+  width: 250px;
+}
+
+.genre_search {
+  margin: 3px;
+  padding: 15px 0;
+}
+
+.restaurant-content {
+  color: dimgray;
+  margin: 10px auto;
+  padding: 30px;
+  display: flex;
+  justify-content:center;
+  width: 350px;
+  background-color: gainsboro;
+}
+
+.restaurant-content a {
+  color: dimgray;
+}
+
+
+
+/*.button {*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*  width: 200px;*/
+/*  min-height: 100px;*/
+/*  padding: 10px;*/
+/*  color: #fff;*/
+/*  background-color: #00c7ce;*/
+/*}*/
+

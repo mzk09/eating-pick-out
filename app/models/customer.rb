@@ -13,6 +13,10 @@ class Customer < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
 
+  def active_for_authentication?
+    super && (is_deleted == false)
+  end
+
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |customer|
       customer.password = SecureRandom.urlsafe_base64
