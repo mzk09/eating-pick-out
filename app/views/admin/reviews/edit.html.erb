@@ -1,6 +1,6 @@
-<section class="inner">
-	<h2 class="section-ttl">レビュー詳細・編集</h2>
-	<div class="flex">
+<section class="container">
+	<h3>レビュー詳細・編集</h3>
+	<div class="admin-page">
 		<%= form_with(model:@review, url: admin_review_path(@review.id)) do |f| %>
 		<table class="admin_review_info">
 			<thead>
@@ -41,7 +41,7 @@
 			</tbody>
 		</table>
 		<div class="flex align-center pl5">
-			<%= f.submit "変更を保存", class: "btn btn-primary" %>
+			<%= f.submit "変更を保存", class: "admin-btn" %>
 		</div>
 		<% end %>
 	</div>

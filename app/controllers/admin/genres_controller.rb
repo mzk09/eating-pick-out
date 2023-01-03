@@ -14,7 +14,7 @@ class Admin::GenresController < ApplicationController
   def create
     @genre = Genre.new(genre_params)
     if @genre.save
-      redirect_to admin_genres_path
+      redirect_to admin_genres_path, notice: 'ジャンルの登録が完了しました。'
     else
       @genres = Genre.all
       render :index
@@ -26,7 +26,7 @@ class Admin::GenresController < ApplicationController
       unless @genre.is_active
         @genre.restaurants.update_all(is_active: false)
       end
-      redirect_to admin_genres_path
+      redirect_to admin_genres_path, notice: 'ジャンルの更新が完了しました。'
     else
       render :edit
     end

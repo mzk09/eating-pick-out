@@ -1,27 +1,32 @@
-<h3 class="text-left">
-		<%= link_to "+", new_admin_restaurant_path, class: "new_admin_item" %>
-</h3>
-<table class="admin_restaurants has_border">
-	<thead>
-		<tr>
-			<th>店舗ID</th>
-			<th>店舗名</th>
-			<th>表示ステータス</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @restaurants.each do |restaurant| %>
+<div class="container">
+	<h3>店舗一覧</h3>
+	<div class="text-left h2">
+			<%= link_to new_admin_restaurant_path do %>
+				<i class="fas fa-plus-circle"></i>
+			<% end %>
+	</div>
+	<table class="table table-sm">
+		<thead>
 			<tr>
-				<td class="text-center"><%= restaurant.id %></td>
-				<td><%= link_to restaurant.name, admin_restaurant_path(restaurant), class: "underline" %></td>
-				<td>
-					<% if restaurant.is_active? %>
-						<span class="text-active">表示中</span>
-					<% else %>
-						<span class="text-invalid">表示停止中</span>
-					<% end %>
-				</td>
+				<th>店舗ID</th>
+				<th>店舗名</th>
+				<th>表示ステータス</th>
 			</tr>
-		<% end %>
-	</tbody>
-</table>
+		</thead>
+		<tbody>
+			<% @restaurants.each do |restaurant| %>
+				<tr>
+					<td><%= restaurant.id %></td>
+					<td><%= link_to restaurant.name, admin_restaurant_path(restaurant), class: "underline" %></td>
+					<td>
+						<% if restaurant.is_active? %>
+							<span class="text-active">表示中</span>
+						<% else %>
+							<span class="text-invalid">表示停止中</span>
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

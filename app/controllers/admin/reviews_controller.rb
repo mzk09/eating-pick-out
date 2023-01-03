@@ -11,7 +11,7 @@ class Admin::ReviewsController < ApplicationController
   end
 
   def update
-    @review.update(review_params) ? (redirect_to admin_reviews_path) : (render :edit)
+    @review.update(review_params) ? (redirect_to admin_reviews_path, notice: 'レビュー情報の更新が完了しました。') : (render :edit)
   end
 
   private

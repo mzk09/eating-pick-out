@@ -14,7 +14,7 @@ class Admin::CustomersController < ApplicationController
   end
 
   def update
-    @customer.update(customer_params) ? (redirect_to admin_customer_path(@customer)) : (render :edit)
+    @customer.update(customer_params) ? (redirect_to admin_customer_path(@customer), notice: '会員情報の更新が完了しました。') : (render :edit)
   end
 
   private

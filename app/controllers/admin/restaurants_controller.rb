@@ -20,7 +20,7 @@ class Admin::RestaurantsController < ApplicationController
   def create
     @restaurant = Restaurant.new(restaurant_params)
     @restaurant.save
-    redirect_to admin_restaurant_path(@restaurant)
+    redirect_to admin_restaurant_path(@restaurant), notice: '店舗の登録が完了しました。'
   end
 
   def show
@@ -30,7 +30,7 @@ class Admin::RestaurantsController < ApplicationController
   end
 
   def update
-    @restaurant.update(restaurant_params) ? (redirect_to admin_restaurant_path(@restaurant)) : (render :edit)
+    @restaurant.update(restaurant_params) ? (redirect_to admin_restaurant_path(@restaurant), notice: '店舗情報の更新が完了しました。') : (render :edit)
   end
 
   private
