@@ -1,28 +1,31 @@
-<section class="inner">
-	<h2 class="section-ttl">会員情報編集</h2>
+<section class="container">
+	<h3>会員情報編集</h3>
 	<%= form_with model:@customer, url: update_information_path do |f| %>
-		<%#= render 'layouts/error_messages', resource: @customer %>
-		<table class="customer_info customer_form">
-			<thead>
-				<th></th>
-				<th></th>
-				<th></th>
-			</thead>
+		<table class="edit-customer">
 			<tbody>
 				<tr>
-					<td>ユーザーネーム</td>
-					<td><%= f.label :name, "ユーザーネーム", class: "customer_name" %> <%= f.text_field :name, :placeholder =>"#{@customer.name}" %></td>
+					<td class="edit"><%= "ユーザーネーム" %></td>
+					<td class="edit"><%= f.text_field :name, :placeholder =>"#{@customer.name}" %></td>
 				</tr>
 				<tr>
-					<td><%= f.label :email, "メールアドレス" %></td>
-					<td colspan="2"><%= f.email_field :email, autocomplete: "email", :placeholder =>"#{@customer.email}" %></td>
+					<td class="edit"><%= "メールアドレス" %></td>
+					<td class="edit"><%= f.email_field :email, autocomplete: "email", :placeholder =>"#{@customer.email}" %></td>
 				</tr>
 				<tr>
-					<td colspan="2"><%= f.submit "編集内容を保存する", class: "btn btn-primary" %></td>
-					<td><%= link_to "パスワードを変更する", edit_customer_registration_path, class: "btn btn-success ml2" %></td>
-					<td><%= link_to "退会する", confirm_unsubscribe_path, class: "btn btn-danger" %></td>
+					<td><%= f.submit "変更を保存", class: "edit-btn" %></td>
 				</tr>
 			</tbody>
 		</table>
+		<div class="edit-customer">
+			<div class="edit-pass-btn">
+				<%= link_to "パスワード変更", edit_customer_registration_path, class: "btn" %>
+			</div>
+			<div class="customer-delete">
+				<%= link_to "退会する", confirm_unsubscribe_path, class: "btn" %>
+			</div>
+		</div>
 	<% end %>
+	<div class="back-btn">
+    <%= link_to "戻る", customer_path(@customer), class: "btn" %>
+  </div>
 </section>

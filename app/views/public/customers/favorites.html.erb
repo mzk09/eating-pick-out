@@ -1,8 +1,17 @@
-<div>いいね一覧</div>
-<div>
+<div class="container">
+  <h3>いいね一覧</h3>
   <% @favorite_restaurants.each do |restaurant|%>
-    <%= link_to restaurant_path(restaurant.id) do %>
-      <%=restaurant.name %>
-    <% end %>
+    <div class="favorite">
+      <%= link_to restaurant_path(restaurant.id) do %>
+        <%=restaurant.name %>
+        <%=":" %>
+        <%= restaurant.genre.name %>
+        <%=":" %>
+        <%= restaurant.address %>
+      <% end %>
+    </div>
   <% end %>
+  <div class="back-btn">
+    <%= link_to "戻る", customer_path(@customer), class: "btn" %>
+  </div>
 </div>

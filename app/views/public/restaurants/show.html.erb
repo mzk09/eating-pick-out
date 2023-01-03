@@ -1,99 +1,88 @@
-<section class="inner">
-	<h2 class="section-ttl">店舗詳細</h2>
-	<div class="flex">
-		<div>
-			<div class="image_field">
-				<%= image_tag @restaurant.get_image(200,200), id: "img_prev", class: "admin_item_image" %>
-			</div>
-		</div>
-		<div id="review_avg" data-score="<%= @review_avg %>"></div>
-		<% if @restaurant.favorited_by?(current_customer) %>
-		<div>
-			<%= link_to restaurant_favorites_path(@restaurant),method: :delete do %>
-				❤︎
-			<% end %>
-		</div>
-		<% else %>
-		<div>
-			<%= link_to restaurant_favorites_path(@restaurant),method: :post do %>
-				♡
-			<% end %>
-		</div>
+<section class="container">
+	<h3>店舗詳細</h3>
+	<div class="restaurant-show border-top">
+		<%= image_tag @restaurant.get_image(350,350) %>
+	</div>
+	<div id="review_avg" data-score="<%= @review_avg %>" class="restaurant-show"></div>
+	<% if @restaurant.favorited_by?(current_customer) %>
+	<div class="restaurant-show">
+		<%= link_to restaurant_favorites_path(@restaurant),method: :delete do %>
+			<i class="fas fa-heart"></i>
 		<% end %>
-		<table class="admin_restaurant_info">
-			<thead>
-				<tr>
-					<th></th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>店舗名</td>
-					<td><%= @restaurant.name %></td>
-				</tr>
-				<tr>
-					<td>ジャンル</td>
-					<td><%= link_to @restaurant.genre.name, restaurants_path(genre_id: @restaurant.genre_id) %></td>
-				</tr>
-				<tr>
-					<td>営業時間</td>
-					<td><%= @restaurant.business_time %></td>
-				</tr>
-				<tr>
-					<td>平均予算</td>
-					<td><%= @restaurant.price%>円〜</td>
-				</tr>
-				<tr>
-					<td>電話</td>
-					<td><%= @restaurant.telephone_number %></td>
-				</tr>
-				<tr>
-					<td>住所</td>
-					<td><%= @restaurant.address %></td>
-				</tr>
-			</tbody>
-		</table>
-		<div>
-			<div class="">レビュー詳細</div>
-			<%# if @restaurant.review.is_active == true %>
-			<% @restaurant.reviews.each do |review| %>
-			<% if review.is_active == true %>
-			<%= review.customer.name %>
-			<div id="star-rate<%= review.id %>"></div>
-			<script>
-        $('#star-rate<%= review.id %>').empty();
-        $('#star-rate<%= review.id%>').raty({
-          size      : 36,
-          starOff   : '<%= asset_path('star-off.png') %>',
-          starOn    : '<%= asset_path('star-on.png') %>',
-          half      : false,
-          readOnly: true,
-          score: <%= review.rate %>,
-        });
-      </script>
-			<%= review.created_at.strftime('%Y/%m/%d') %>
-			<%= review.comment %>
-			<%if review.customer == current_customer %>
-				<%= link_to "delete",restaurant_review_path(review.restaurant,review),method: :patch, data: {confirm: "削除しますか？"} %>
-			<% end %>
-			<% end %>
-			<% end %>
-			<%# end %>
-		</div>
-		<div>
-			<%= form_with model: [@restaurant, @review] do |f| %>
-      	<div id="evaluate_stars"></div>
-      	<%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-      	<%= f.submit "送信する" %>
-      <% end %>
-		</div>
+	</div>
+	<% else %>
+	<div class="restaurant-show">
+		<%= link_to restaurant_favorites_path(@restaurant),method: :post do %>
+			<i class="far fa-heart"></i>
+		<% end %>
+	</div>
+	<% end %>
+	<div class="restaurant-show">
+		<dl>
+			<dd>店舗名 : <%= @restaurant.name %></dd>
+			<dd>ジャンル : <%= link_to @restaurant.genre.name, restaurants_path(genre_id: @restaurant.genre_id) %></dd>
+			<dd>営業時間 : <%= @restaurant.business_time %></dd>
+			<dd>平均予算 : <%= @restaurant.price%>円〜</dd>
+			<dd>電話 : <%= @restaurant.telephone_number %></dd>
+			<dd>住所 : <%= @restaurant.address %></dd>
+		</dl>
+	</div>
+	<div class="map">
+	  <div id="map" style="width:400px; height:300px"></div>
+	</div>
+	<h4 class="border-top">レビュー記入</h4>
+		<%= form_with model: [@restaurant, @review] do |f| %>
+    	<div id="evaluate_stars" class="restaurant-show"></div>
+	<div class="restaurant-show">
+		<%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" ,:size=>"35x5"%>
+	</div>
+    <%= f.submit "送信する",class: "submitbtn" %>
+    <% end %>
 	</div>
 
-	<div class="map">
-	  <div id="map" style="width:500px; height:300px">
-	  </div>
-	</div>
+
+	<h4 class="border-top">レビュー詳細</h4>
+  <table class="table">
+    <tbody>
+      <% @restaurant.reviews.each do |review|%>
+      <% if review.is_active == true %>
+      <tr>
+        <td>
+          <div class="review">
+           <%= review.customer.name %>
+          </div>
+        </td>
+        <td>
+          <div id="star-rate<%= review.id %>" class="review"></div>
+          <script>
+            $('#star-rate<%= review.id %>').empty();
+            $('#star-rate<%= review.id%>').raty({
+              size      : 30,
+              starOff   : '<%= asset_path('star-off.png') %>',
+              starOn    : '<%= asset_path('star-on.png') %>',
+              half      : false,
+              readOnly: true,
+              score: <%= review.rate %>,
+            });
+          </script>
+        </td>
+        <td>
+          <div class="review">
+          <%= review.comment %>
+          </div>
+        </td>
+        <td class="review-btn">
+        	<%if review.customer == current_customer %>
+						<%= link_to "削除",restaurant_review_path(review.restaurant,review),method: :patch, data: {confirm: "削除しますか？"},class: "btn" %>
+					<% end %>
+        </td>
+      </tr>
+      <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+
 
   <script>
     function initMap(){
@@ -126,7 +115,6 @@
     }
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
-
 
 </section>
 

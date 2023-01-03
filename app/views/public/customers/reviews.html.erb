@@ -1,30 +1,51 @@
-<div>レビュー一覧</div>
-<div>
-  <% @customer.reviews.each do |review|%>
-  <% if review.is_active == true %>
-  <div class="">
-    <div class="">
-    <%= link_to restaurant_path(review.restaurant.id) do %>
-      <%= review.restaurant.name %>
-    <% end %>
-    </div>
-    <div id="star-rate<%= review.id %>"></div>
-			<script>
-        $('#star-rate<%= review.id %>').empty();
-        $('#star-rate<%= review.id%>').raty({
-          size      : 36,
-          starOff   : '<%= asset_path('star-off.png') %>',
-          starOn    : '<%= asset_path('star-on.png') %>',
-          half      : false,
-          readOnly: true,
-          score: <%= review.rate %>,
-        });
-      </script>
-    <div class="">
-      <%= review.comment %>
-    </div>
-    <%= link_to "delete",restaurant_review_path(review.restaurant,review),method: :patch, data: {confirm: "削除しますか？"} %>
+<div class="container">
+  <h3>レビュー一覧</h3>
+  <table class="table">
+    <thead>
+      <th>店名</th>
+      <th>評価</th>
+      <th>コメント</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <% @customer.reviews.each do |review|%>
+      <% if review.is_active == true %>
+      <tr>
+        <td>
+          <div class="review">
+            <%= link_to restaurant_path(review.restaurant.id),class: "review-restaurant" do %>
+              <%= review.restaurant.name %>
+            <% end %>
+          </div>
+        </td>
+        <td>
+          <div id="star-rate<%= review.id %>" class="review"></div>
+          <script>
+            $('#star-rate<%= review.id %>').empty();
+            $('#star-rate<%= review.id%>').raty({
+              size      : 30,
+              starOff   : '<%= asset_path('star-off.png') %>',
+              starOn    : '<%= asset_path('star-on.png') %>',
+              half      : false,
+              readOnly: true,
+              score: <%= review.rate %>,
+            });
+          </script>
+        </td>
+        <td>
+          <div class="review">
+          <%= review.comment %>
+          </div>
+        </td>
+        <td class="review-btn">
+          <%= link_to "削除",restaurant_review_path(review.restaurant,review),method: :patch, data: {confirm: "削除しますか？"}, class: "btn" %>
+        </td>
+      </tr>
+      <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="back-btn">
+    <%= link_to "戻る", customer_path(@customer), class: "btn" %>
   </div>
-  <% end %>
-  <% end %>
 </div>

@@ -56,7 +56,7 @@ h1,h2,h3 {
 
 h4,h6 {
   color: darkgray;
-  padding: 20px 0;
+  padding: 10px 0;
   display: flex;
   justify-content:space-around;
 }
@@ -72,13 +72,14 @@ h4,h6 {
   border-radius: 50px;
 }
 
-.search-content {
+.search-content,.favorite,.edit-pass,.login,.signup {
   width: auto;
   padding: 10px 0;
   display: flex;
   justify-content:center;
   margin: 10px auto;
 }
+
 
 input[type="textbox"] {
   width: 300px;
@@ -103,12 +104,18 @@ input[type="textbox"] {
   padding-left: 10px;
 }
 
-.map-search-btn {
+.map-search-btn,.search-btn {
   background-color: slategray;
+  border-bottom-color: slategray;
   color: white;
   border-radius: 50px;
   height: 50px;
   width: 250px;
+}
+
+.search-btn {
+  height: 30px;
+  width: 100px;
 }
 
 .genre_search {
@@ -130,7 +137,132 @@ input[type="textbox"] {
   color: dimgray;
 }
 
+.customer,.edit-customer {
+  display: flex;
+  justify-content:space-around;
+  color: dimgray;
+  padding: 15px;
+  margin: auto;
+}
 
+.customer-information,.edit {
+  padding-bottom: 10px;
+}
+
+.btn-mypage a {
+  background-color: lightsteelblue;
+  color: whitesmoke;
+  display: flex;
+  justify-content:space-around;
+  max-width: 150px;
+  font-size: 15px;
+  margin: 10px auto;
+}
+
+.review-btn a {
+  background-color: lightcoral;
+  color: whitesmoke;
+  max-width: 150px;
+  margin: 10px auto;
+  font-size: 0.9em;
+}
+
+.reviews {
+  width: 550px;
+}
+
+.review {
+  color: dimgray;
+  padding:5px;
+  margin: 10px auto;
+}
+
+.review-restaurant {
+  color: dimgray;
+  padding:5px;
+  margin: 10px auto;
+  border-bottom-color: dimgray;
+  border-bottom-style: inset;
+}
+
+.back-btn a ,.customer-back-btn a {
+  background-color: gainsboro;
+  font-size: 0.8em;
+}
+
+.favorite a {
+  color: dimgray;
+  border-bottom-style: inset;
+}
+.edit-customer {
+  margin: 15px;
+}
+
+.edit-btn,.login-btn,.signup-btn {
+  background-color: lightsteelblue;
+  border-radius: 50px;
+  border-color: lightsteelblue;
+  color: white;
+  height: 40px;
+  width: 180px;
+  margin: auto;
+}
+
+.edit-pass-btn a ,.customer-delete a ,.submitbtn {
+  color: white;
+  max-width: 150px;
+  font-size: 0.9em;
+  margin: auto;
+  display: flex;
+  justify-content:space-around;
+}
+
+.edit-pass-btn a {
+  background-color: lightsteelblue;
+}
+
+.customer-delete a {
+  background-color: lightcoral;
+}
+
+.edit-pass,.login,.signup {
+  color: dimgray;
+}
+
+.customer-back-btn a {
+  max-width: 150px;
+  font-size: 0.9em;
+  margin: 10px auto;
+  display: flex;
+  justify-content:space-around;
+}
+
+.restaurant-content {
+  display: flex;
+  flex-flow: column;
+}
+
+.restaurant-show,.restaurant-show-review {
+  margin: auto;
+  padding: 10px;
+  display: flex;
+  justify-content:center;
+  color: dimgray;
+}
+
+.restaurant-show-review {
+  border-bottom: inherit;
+  border-bottom-color: dimgray;
+}
+
+.submitbtn {
+  background-color: darkgray;
+  border-color: darkgray;
+  width: 150px;
+  height: 40px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
 
 /*.button {*/
 /*  display: flex;*/

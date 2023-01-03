@@ -1,29 +1,21 @@
-<section class="inner">
-  <% if flash[:notice] %>
-    <p class="text-active"><%= flash[:notice] %></p>
-  <% end %>
-	<h2 class="section-ttl">マイページ</h2>
-	<h3>
-		登録情報
-		<%=link_to"いいね一覧",favorites_customer_path(@customer),class: "btn btn-success ml2" %>
-		<%=link_to"レビュー一覧",reviews_customer_path(@customer),class: "btn btn-success ml2" %>
-		<%= link_to "編集する", edit_information_path, class: "btn btn-success ml2" %>
-	</h3>
-	<table class="customer_info mb3">
-		<thead>
-			<th></th>
-			<th></th>
-			<th></th>
-		</thead>
+<section class="container">
+	<h3>マイページ</h3>
+	<h4>登録情報</h4>
+	<table class="customer">
 		<tbody>
 			<tr>
-				<td>ユーザーネーム</td>
-				<td><%= @customer.name %></td>
+				<td class="customer-information">ユーザーネーム:</td>
+				<td class="customer-information"><%= @customer.name %></td>
 			</tr>
 			<tr>
-				<td>メールアドレス</td>
-				<td colspan="2"><%= @customer.email %></td>
+				<td class="customer-information">メールアドレス:</td>
+				<td class="customer-information"><%= @customer.email %></td>
 			</tr>
 		</tbody>
 	</table>
+	<div class="btn-mypage">
+		<%=link_to"いいね一覧",favorites_customer_path(@customer),class: "btn" %>
+		<%=link_to"レビュー一覧",reviews_customer_path(@customer),class: "btn" %>
+		<%= link_to "編集する", edit_information_path, class: "btn" %>
+	</div>
 </section>

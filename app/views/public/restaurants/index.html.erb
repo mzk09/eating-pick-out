@@ -1,42 +1,33 @@
-<div class="container-fluid">
-  <div class="row content-wrapper">
-    <div class="shop-index-wrapper col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-      <h1>店舗一覧</h1>
-      <div class="col-xs-12">
-        <%= render 'search', q: @q, url: restaurants_path %>
-        <%#= render partial: 'filter' %>
-      </div>
-      <div class="col-xs-12">
-        <% @genres.each do |genre| %>
-          <%= link_to genre.name, restaurants_path(genre_id: genre.id) %>
-        <% end %>
-      </div>
-      <% if params[:genre_id] %>
-			<h2 class="section-ttl"><%= @genre.name %>の商品一覧 (全<%= @all_restaurants_count %>件)</h2>
-			<% else %>
-			<h2 class="section-ttl">商品一覧 (全<%= @all_restaurants_count %>件)</h2>
-			<% end %>
-
+<div class="container">
+  <h3>店舗一覧</h3>
+  <div class="search-content">
+    <%= render 'search', q: @q, url: restaurants_path %>
+  </div>
+    <div class="search-content">
+      <% @genres.each do |genre| %>
+        <%= link_to genre.name, restaurants_path(genre_id: genre.id) %>
+      <% end %>
+    </div>
+    <div class="restaurants">
       <% if @restaurants.first %>
       <% if @restaurants.present? %>
-        <div class="restaurant">
-          <% @restaurants.each do |restaurant| %>
-          <%= link_to restaurant_path(restaurant),'data-turbolinks': false do %>
-          <div class="row">
+        <% @restaurants.each do |restaurant| %>
+        <%= link_to restaurant_path(restaurant),'data-turbolinks': false do %>
+          <div class="restaurant-content">
             <%#= link_to "", @restaurants, class: "stretched-link", data: { 'turbolinks': false }  %>
             <!--<%# if maps_path? %>-->
             <!--  <div id="result-label-<%#= "#{shop_counter+1}" %>" class="col-xs-1"></div>-->
             <!--<%# end %>-->
-            <div class="restaurant-name col-xs-12">
+            <div class="restaurant">
               <%= restaurant.name %>
             </div>
-            <div class="features col-xs-12">
+            <div class="restaurant">
               <%#= render partial: 'shared/features', collection: shop.features, as: 'feature' %>
             </div>
-            <div class="col-xs-12 col-md-8">
+            <div class="restaurant">
               <%= image_tag restaurant.get_image(200,200), id: "img_prev", class: "admin_item_image" %>
             </div>
-            <div class="col-xs-12 col-md-4">
+            <div class="restaurant">
               <dl>
                 <dt>住所</dt>
                 <dd><%= restaurant.address %></dd>
@@ -47,18 +38,15 @@
               </dl>
             </div>
           </div>
-          <% end %>
-          <% end %>
+        <% end %>
+        <% end %>
         </div>
         <%#= paginate @shops %>
       <% else %>
-        <div id="shop-not-found">
-          <h4>条件に合う飲食店がありません</h4>
-        </div>
+        <h4>条件に合う飲食店がありません</h4>
       <% end %>
       <% else %>
-        <h3>対応する飲食店はありませんでした。</h3>
+        <h4>対応する飲食店はありませんでした。</h4>
       <% end %>
     </div>
-  </div>
 </div>
