@@ -1,12 +1,6 @@
 <div class="container">
     <h3>マップから探す</h3>
-    <div class="search-content">
-      <input id="address" type="textbox" placeholder='  位置情報、住所、地名等  '>
-      <input class="map-btn" type="button" value="マップ位置変更" onclick="getAddress()">
-    </div>
       <%#= render 'search', q: @q, url: root_path %>
-    <div class="map" id="search-map" style="height: 500px !important; width: 600px !important;"></div>
-
     <div class="search-content">
       <%= form_with scope: :lat_lng, url: map_search_path, method: :get do |f| %>
         <%= f.number_field :latitude, id: 'lat', step: '0.0000001', value: @latitude, type: 'hidden' %>
@@ -14,9 +8,23 @@
         <%= f.submit "周辺の飲食店を探す", class: "map-search-btn" %>
       <% end %>
     </div>
+    <% if params[:genre_id] %>
+			<h6>★<%= @genre.name %>で絞込み中</h6>
+		<% end %>
+    <div class="map" id="search-map" style="height: 500px !important; width: 600px !important;"></div>
+    <div class="search-content">
+      <input id="address" type="textbox" placeholder='  位置情報、住所、地名等  '>
+      <input class="map-btn" type="button" value="マップ位置変更" onclick="getAddress()">
+    </div>
+    <h6>▼ 何を食べるか決まらない場合はクリック ▼</h6>
+      <% @random.each do |genre| %>
+        <div class="random-btn">
+          <%= link_to "PickOut", map_search_path(genre_id: genre.id),'data-turbolinks': false, class: "genre_search btn" %>
+        </div>
+      <% end %>
     <div class="search-content">
       <% @genres.each do |genre| %>
-        <%= link_to genre.name, map_search_path(genre_id: genre.id),'data-turbolinks': false, class: "genre_search" %>
+        <%= link_to genre.name,map_search_path(genre_id: genre.id),'data-turbolinks': false, class: "genre_search" %>
       <% end %>
     </div>
     <% if @restaurants.present? %>

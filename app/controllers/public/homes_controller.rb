@@ -5,9 +5,12 @@ class Public::HomesController < ApplicationController
 
   def map_search
     @genres = Genre.only_active.includes(:restaurants).sort
+    @random = @genres.sample(1)
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
       all_restaurants = @genre.restaurants
+    elsif params[:genre_id]
+      
     else
       all_restaurants = Restaurant.includes(:genre)
     end
