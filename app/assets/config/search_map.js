@@ -2,10 +2,8 @@
 let geocoder
 
 let lat = gon.lat;
-// let lat =  34.841411;
 let lng = gon.lng;
-// let lng = 136.5859378;
-let map = null
+let map = null;
 let marker = null;
 let circle = null;
 let restaurants = gon.restaurants;
@@ -20,7 +18,7 @@ function initSearchMap() {
     streetViewControl: false,
     fullscreenControl: false,
     mapTypeControl: false,
-    gestureHandling: 'greedy',
+    gestureHandling: 'auto',
     zoom: 14,
   });
 

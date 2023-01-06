@@ -9,8 +9,6 @@ class Public::HomesController < ApplicationController
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
       all_restaurants = @genre.restaurants
-    elsif params[:genre_id]
-      
     else
       all_restaurants = Restaurant.includes(:genre)
     end
@@ -27,7 +25,7 @@ class Public::HomesController < ApplicationController
     @latitude = gon.lat
     @longitude = gon.lng
     radius = 1.5
-    @restaurants = all_restaurants.all.within(radius, origin: [gon.lat, gon.lng]).by_distance(origin: [gon.lat, gon.lng]).preload(:genre)
+    @restaurants = all_restaurants.within(radius, origin: [gon.lat, gon.lng]).by_distance(origin: [gon.lat, gon.lng])
     gon.restaurants = @restaurants
     #gon.total_restaurants_count = @restaurants.all.count
   end

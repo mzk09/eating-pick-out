@@ -1,6 +1,5 @@
 <div class="container">
     <h3>マップから探す</h3>
-      <%#= render 'search', q: @q, url: root_path %>
     <div class="search-content">
       <%= form_with scope: :lat_lng, url: map_search_path, method: :get do |f| %>
         <%= f.number_field :latitude, id: 'lat', step: '0.0000001', value: @latitude, type: 'hidden' %>
@@ -33,7 +32,6 @@
           <% @restaurants.each do |restaurant| %>
           <div class="restaurant-content">
             <%= link_to restaurant_path(restaurant),'data-turbolinks': false do %>
-            <%#= link_to "", @restaurants, class: "stretched-link", data: { 'turbolinks': false }  %>
               <!--<div id="result-label-<%#= "#{restaurant_counter+1}" %>" class="col-xs-1"></div>-->
             <div class="restaurant-name col-xs-12">
               <%= restaurant.name %>
