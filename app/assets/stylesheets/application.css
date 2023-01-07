@@ -23,6 +23,10 @@
   font-family: "Hiragino Maru Gothic ProN W4";
 }
 
+body {
+  background-image: image-url("hoge.jpg");
+}
+
 a {
   text-decoration: none;
 }
