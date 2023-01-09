@@ -13,6 +13,9 @@ class Restaurant < ApplicationRecord
 
   scope :where_genre_active, -> { joins(:genre).where(genres: { is_active: true }) }
 
+  scope :active_restaurant, -> { where(is_active: true) }
+
+
   geocoded_by :address
   after_validation :geocode
 

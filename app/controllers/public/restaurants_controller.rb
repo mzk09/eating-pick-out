@@ -15,7 +15,8 @@ class Public::RestaurantsController < ApplicationController
     else
       all_restaurants = Restaurant.includes(:genre)
     end
-    @q = all_restaurants.ransack(params[:q])
+    @active_restaurants = all_restaurants.active_restaurant
+    @q = @active_restaurants.ransack(params[:q])
     @restaurants = @q.result(distinct: true)
     @all_restaurants_count = all_restaurants.count
   end

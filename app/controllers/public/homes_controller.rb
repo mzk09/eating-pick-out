@@ -25,7 +25,8 @@ class Public::HomesController < ApplicationController
     @latitude = gon.lat
     @longitude = gon.lng
     radius = 1.5
-    @restaurants = all_restaurants.within(radius, origin: [gon.lat, gon.lng]).by_distance(origin: [gon.lat, gon.lng])
+    @active_restaurants = all_restaurants.active_restaurant
+    @restaurants = @active_restaurants.within(radius, origin: [gon.lat, gon.lng]).by_distance(origin: [gon.lat, gon.lng])
     gon.restaurants = @restaurants
     #gon.total_restaurants_count = @restaurants.all.count
   end
