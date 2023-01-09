@@ -14,15 +14,11 @@
         <% @restaurants.each do |restaurant| %>
         <%= link_to restaurant_path(restaurant),'data-turbolinks': false do %>
           <div class="restaurant-content">
-            <%#= link_to "", @restaurants, class: "stretched-link", data: { 'turbolinks': false }  %>
-            <!--<%# if maps_path? %>-->
             <!--  <div id="result-label-<%#= "#{shop_counter+1}" %>" class="col-xs-1"></div>-->
-            <!--<%# end %>-->
             <div class="restaurant">
               <%= restaurant.name %>
             </div>
             <div class="restaurant">
-              <%#= render partial: 'shared/features', collection: shop.features, as: 'feature' %>
             </div>
             <div class="restaurant">
               <%= image_tag restaurant.get_image(200,200), id: "img_prev", class: "admin_item_image" %>
@@ -33,7 +29,7 @@
                 <dd><%= restaurant.address %></dd>
                 <dt>営業時間</dt>
                 <dd><%= restaurant.business_time %></dd>
-                <dt>定休日</dt>
+                <!--<dt>定休日</dt>-->
                 <dd><%#= @restaurant.closed %></dd>
               </dl>
             </div>
@@ -41,7 +37,6 @@
         <% end %>
         <% end %>
         </div>
-        <%#= paginate @shops %>
       <% else %>
         <h4>条件に合う飲食店がありません</h4>
       <% end %>
