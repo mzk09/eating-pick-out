@@ -81,3 +81,4 @@ gem "net-pop"
 gem "net-imap"
 
 gem 'dotenv-rails'
+gem 'rexml', '~> 3.2', '>= 3.2.4'
