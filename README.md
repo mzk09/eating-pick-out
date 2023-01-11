@@ -18,7 +18,11 @@
 https://docs.google.com/spreadsheets/d/1PE4qEu93Ujrk-pgxiOLjPaXp68lAlDOuku0TYVbBPxg/edit?usp=sharing
 
 ## 設計書
-<...>
+- 詳細設計:https://docs.google.com/spreadsheets/d/1ZUgHZz1HO4z7e6SodqYL7uOXpCr8QiACh1kJkFgXyGQ/edit?usp=sharing
+- テーブル定義書:https://docs.google.com/spreadsheets/d/1Yb60_yHYVgu1LNHL3jW49_pMso0QikidH4zb-6CHpP4/edit?usp=sharing
+- ER図:https://drive.google.com/file/d/1nXxTsog_NtT9b3uGKrJJR2_Y82I5NMUX/view?usp=sharing
+- ワイヤーフレーム:https://drive.google.com/file/d/1Hh8TZXcVEMaQnQWXo8Oun_HIA3Xg8Qzl/view?usp=sharing
+
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -28,5 +32,4 @@ https://docs.google.com/spreadsheets/d/1PE4qEu93Ujrk-pgxiOLjPaXp68lAlDOuku0TYVbB
 - IDE：Cloud9
 
 ## 使用素材
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。
+- 画像:https://o-dan.net/ja/
