@@ -22,6 +22,7 @@ https://docs.google.com/spreadsheets/d/1PE4qEu93Ujrk-pgxiOLjPaXp68lAlDOuku0TYVbB
 - テーブル定義書:https://docs.google.com/spreadsheets/d/1Yb60_yHYVgu1LNHL3jW49_pMso0QikidH4zb-6CHpP4/edit?usp=sharing
 - ER図:https://drive.google.com/file/d/1nXxTsog_NtT9b3uGKrJJR2_Y82I5NMUX/view?usp=sharing
 - ワイヤーフレーム:https://drive.google.com/file/d/1Hh8TZXcVEMaQnQWXo8Oun_HIA3Xg8Qzl/view?usp=sharing
+- テスト仕様書:https://docs.google.com/spreadsheets/d/1JRChRoolmrFaApppMEteMGQBWwk3acGV/edit?usp=sharing&ouid=106774429667841931068&rtpof=true&sd=true
 
 
 ## 開発環境
