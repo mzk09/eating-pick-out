@@ -7,6 +7,7 @@ let map = null;
 let marker = null;
 let circle = null;
 let restaurants = gon.restaurants;
+let genres = gon.genres;
 
 function initSearchMap() {
 
@@ -196,6 +197,14 @@ initRestaurantInfo = () => {
       animation: google.maps.Animation.DROP
     });
 
+
+    // markerがクリックされた時、
+    restaurantMarkers[i].addListener('click', function(){
+      // infoWindowを表示
+      updateinfowindow(restaurantMarkers[i], restaurants[i]);
+    });
+
+
     console.log(labelText)
 
 
@@ -204,6 +213,47 @@ initRestaurantInfo = () => {
     // document.getElementById(labelId).textContent = labelText;
   }
 }
+
+
+updateinfowindow = (restaurantMarker, restaurant) => {
+  
+  // const RestaurantRestaurantImage = document.createElement('img');
+  
+  // 店舗情報ウィンドウのHTML要素
+  const contentHtml =
+  '<h4>' + restaurant.name + '</h4>' +
+  // '<div class="restaurant-image">' + restaurant.image +
+  // '<div>'
+  '<div class="restaurant-info">' +
+    '<h5>住所</h5>' +
+    '<p class="content">' + restaurant.address + '</p>' +
+  '</div>' +
+  '<div class="restaurant-info">' +
+    '<h5 class="title">営業時間</h5>' +
+    '<p class="content">' + restaurant.business_time + '</p>' +
+  '</div>' +
+  '<a class="detail" href="/restaurants/' + restaurant.id + '">詳細ページへ</a>';
+
+  // 現在開いているウィンドウを閉じる
+  // if(currentInfoWindow) {
+  //   currentInfoWindow.close();
+  // }
+
+  // 店舗情報ウィンドウの作成
+  infowindow = new google.maps.InfoWindow({
+      content: contentHtml,
+      maxWidth: 200,
+    });
+
+  // 店舗情報ウィンドウを開く
+  infowindow.open({
+    anchor: restaurantMarker,
+    map,
+  });
+
+  currentInfoWindow = infowindow;
+}
+
 
 moveCurrentLocation = () => {
   if (navigator.geolocation) {

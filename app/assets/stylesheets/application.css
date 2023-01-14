@@ -280,6 +280,11 @@ p {
   margin: auto;
 }
 
+.restaurant-image {
+  width: 20px;
+  height: 20px;
+}
+
 /*.button {*/
 /*  display: flex;*/
 /*  justify-content: center;*/
