@@ -1,6 +1,9 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+
+  routes.default_url_options[:host] = ENV['RAILS_URL']
+
   # config.after_initialize do
   #   Bullet.enable        = true
   #   Bullet.alert         = true
@@ -86,5 +89,7 @@ Rails.application.configure do
   config.hosts << "64bd0d5307f64a5bb828d17603249ce0.vfs.cloud9.ap-northeast-1.amazonaws.com"
 
   config.active_job.queue_adapter = :inline
+
+  config.autoloader = :classic
 
 end

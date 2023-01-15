@@ -3,11 +3,19 @@ let geocoder
 
 let lat = gon.lat;
 let lng = gon.lng;
+
 let map = null;
 let marker = null;
 let circle = null;
+
+let infowindow;
+let currentInfoWindow = null;
+
 let restaurants = gon.restaurants;
 let genres = gon.genres;
+let images = gon.images;
+
+// console.log(images)
 
 function initSearchMap() {
 
@@ -198,11 +206,32 @@ initRestaurantInfo = () => {
     });
 
 
+
+
     // markerがクリックされた時、
     restaurantMarkers[i].addListener('click', function(){
+
+      let genreName;
+      for(var s = 0; s < genres.length; s++){
+        if(restaurants[i].genre_id == genres[s].id){
+          genreName = genres[s].name;
+        }
+      }
+
+      let imageUrl;
+      for(var q = 0; q < images.length; q++){
+        if(restaurants[i].id == images[q].record_id){
+          imageUrl = images[q].url;
+        }
+      }
+
+      console.log(imageUrl)
+
       // infoWindowを表示
-      updateinfowindow(restaurantMarkers[i], restaurants[i]);
+      updateinfowindow(restaurantMarkers[i], restaurants[i], genreName, imageUrl);
     });
+
+  // console.log(restaurants[i].image)
 
 
     console.log(labelText)
@@ -215,15 +244,14 @@ initRestaurantInfo = () => {
 }
 
 
-updateinfowindow = (restaurantMarker, restaurant) => {
-  
-  // const RestaurantRestaurantImage = document.createElement('img');
-  
+updateinfowindow = (restaurantMarker, restaurant, genreName, imageUrl) => {
+
   // 店舗情報ウィンドウのHTML要素
   const contentHtml =
   '<h4>' + restaurant.name + '</h4>' +
   // '<div class="restaurant-image">' + restaurant.image +
   // '<div>'
+  '<img src="' + imageUrl + '" width="70" height="70">' +
   '<div class="restaurant-info">' +
     '<h5>住所</h5>' +
     '<p class="content">' + restaurant.address + '</p>' +
@@ -232,12 +260,16 @@ updateinfowindow = (restaurantMarker, restaurant) => {
     '<h5 class="title">営業時間</h5>' +
     '<p class="content">' + restaurant.business_time + '</p>' +
   '</div>' +
+  '<div class="restaurant-info">' +
+    '<h5 class="title">ジャンル</h5>' +
+    '<p class="content">' + genreName + '</p>' +
+  '</div>' +
   '<a class="detail" href="/restaurants/' + restaurant.id + '">詳細ページへ</a>';
 
   // 現在開いているウィンドウを閉じる
-  // if(currentInfoWindow) {
-  //   currentInfoWindow.close();
-  // }
+  if(currentInfoWindow) {
+    currentInfoWindow.close();
+  }
 
   // 店舗情報ウィンドウの作成
   infowindow = new google.maps.InfoWindow({

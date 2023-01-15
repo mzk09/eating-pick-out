@@ -1,4 +1,6 @@
 class Restaurant < ApplicationRecord
+  include Rails.application.routes.url_helpers
+
   has_one_attached:image
   has_many :favorites,dependent: :destroy
   has_many :reviews,dependent: :destroy
@@ -44,6 +46,10 @@ class Restaurant < ApplicationRecord
   def favorited_by?(customer)
     favorites.where(customer_id: customer).exists?
     # favorites.exists?(customer_id:customer.id)
+  end
+
+  def image_url
+    {record_id: image.record_id, url: image.attached? ? url_for(image) : nil}
   end
 
 end

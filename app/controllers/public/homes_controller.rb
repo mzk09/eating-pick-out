@@ -29,6 +29,9 @@ class Public::HomesController < ApplicationController
     @restaurants = @active_restaurants.within(radius, origin: [gon.lat, gon.lng]).by_distance(origin: [gon.lat, gon.lng])
     gon.restaurants = @restaurants
     gon.genres = @genres
+
+    gon.images = @restaurants.map{|r| r.image_url}
+
     #gon.total_restaurants_count = @restaurants.all.count
   end
 
