@@ -54,6 +54,13 @@ h1,h2,h3 {
   justify-content:space-around;
 }
 
+h5 {
+  color: darkgray;
+  font-size: 7px;
+  display: flex;
+  justify-content:space-around;
+}
+
 h4,h6 {
   color: darkgray;
   padding: 10px 0;

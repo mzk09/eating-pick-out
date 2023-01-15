@@ -15,15 +15,12 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    #get 'top' => 'homes#top', as: 'top'
-    #get 'search' => 'homes#search', as: 'search'
+
     resources :customers, only: [:index, :show, :edit, :update]
     resources:restaurants,only:[:index,:new,:create,:show,:edit,:update,:destroy]
     resources:reviews,only:[:index,:edit,:update]
     resources :genres, only: [:index, :create, :edit, :update]
-    #resources :orders, only: [:index, :show, :update] do
-      #resources :order_details, only: [:update]
-    #end
+
   end
 
   scope module: :public do
@@ -46,13 +43,10 @@ Rails.application.routes.draw do
     end
 
 
-    #resources :addresses, only: [:index, :create, :edit, :update, :destroy]
     resources :restaurants, only: [ :show, :index] do
       resource :favorites, only: [:create, :destroy]
       resources :reviews, only: [:create,:destroy,:update]
     end
-    #resources :cart_items, only: [:index]
-    #resources :orders, only: [:new, :index, :create, :show]
 
   end
 
