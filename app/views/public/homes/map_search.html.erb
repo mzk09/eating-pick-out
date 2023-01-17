@@ -7,6 +7,19 @@
         <%= f.submit "周辺の飲食店を探す", class: "map-search-btn" %>
       <% end %>
     </div>
+    <div class="search-content">
+      <% @genres.each do |genre| %>
+        <%= link_to genre.name,map_search_path(genre_id: genre.id),'data-turbolinks': false, class: "genre_search" %>
+      <% end %>
+    </div>
+    <% if @restaurants.present? %>
+      <% if @restaurants.first %>
+      <% else %>
+        <h4>対応する飲食店はありませんでした。</h4>
+      <% end %>
+    <% else %>
+      <h4>条件に合う飲食店がありません</h4>
+    <% end %>
     <% if params[:genre_id] %>
 			<h6>★<%= @genre.name %>で絞込み中</h6>
 		<% end %>
@@ -21,44 +34,6 @@
           <%= link_to "PickOut", map_search_path(genre_id: genre.id),'data-turbolinks': false, class: "genre_search btn" %>
         </div>
       <% end %>
-    <div class="search-content">
-      <% @genres.each do |genre| %>
-        <%= link_to genre.name,map_search_path(genre_id: genre.id),'data-turbolinks': false, class: "genre_search" %>
-      <% end %>
-    </div>
-    <% if @restaurants.present? %>
-      <% if @restaurants.first %>
-      <div class="restaurants">
-          <% @restaurants.each do |restaurant| %>
-          <div class="restaurant-content">
-            <%= link_to restaurant_path(restaurant),'data-turbolinks': false do %>
-              <!--<div id="result-label-<%#= "#{restaurant_counter+1}" %>" class="col-xs-1"></div>-->
-            <div class="restaurant-name col-xs-12">
-              <%= restaurant.name %>
-            </div>
-            <div class="col-xs-12">
-              <%= image_tag restaurant.get_image(200,200) %>
-            </div>
-            <div class="col-xs-12">
-              <dl>
-                <dt>住所</dt>
-                <dd><%= restaurant.address %></dd>
-                <dt>営業時間</dt>
-                <dd><%= restaurant.business_time %></dd>
-                <dt>定休日</dt>
-                <dd><%#= @restaurant.closed %></dd>
-              </dl>
-            </div>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-      <% else %>
-        <h4>対応する飲食店はありませんでした。</h4>
-      <% end %>
-    <% else %>
-      <h4>条件に合う飲食店がありません</h4>
-    <% end %>
 </div>
 <%= javascript_include_tag "search_map.js" %>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initSearchMap" async defer></script>
