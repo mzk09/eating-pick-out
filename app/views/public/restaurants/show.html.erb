@@ -49,6 +49,11 @@
       <tr>
         <td>
           <div class="review">
+           <%= review.created_at.strftime('%Y/%m/%d %H:%M') %>
+          </div>
+        </td>
+        <td>
+          <div class="review">
            <%= review.customer.name %>
           </div>
         </td>

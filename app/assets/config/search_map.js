@@ -210,14 +210,14 @@ initRestaurantInfo = () => {
 
     // markerがクリックされた時、
     restaurantMarkers[i].addListener('click', function(){
-
+      //ウィンドウにジャンル表示
       let genreName;
       for(var s = 0; s < genres.length; s++){
         if(restaurants[i].genre_id == genres[s].id){
           genreName = genres[s].name;
         }
       }
-
+      //ウィンドウ表示用の店舗画像
       let imageUrl;
       for(var q = 0; q < images.length; q++){
         if(restaurants[i].id == images[q].record_id){
@@ -231,15 +231,11 @@ initRestaurantInfo = () => {
       updateinfowindow(restaurantMarkers[i], restaurants[i], genreName, imageUrl);
     });
 
-  // console.log(restaurants[i].image)
 
 
     console.log(labelText)
 
 
-    // 検索結果の店舗にマップのマーカーと同じラベル文字を追加
-    // let labelId = "result-label-" + (i + 1).toString();
-    // document.getElementById(labelId).textContent = labelText;
   }
 }
 

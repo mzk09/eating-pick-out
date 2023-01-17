@@ -13,6 +13,11 @@
       <tr>
         <td>
           <div class="review">
+           <%= review.created_at.strftime('%Y/%m/%d %H:%M') %>
+          </div>
+        </td>
+        <td>
+          <div class="review">
             <%= link_to restaurant_path(review.restaurant.id),class: "review-restaurant" do %>
               <%= review.restaurant.name %>
             <% end %>
