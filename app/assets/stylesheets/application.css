@@ -68,6 +68,13 @@ h4,h6 {
   justify-content:space-around;
 }
 
+h7 {
+  color: darkgray;
+  font-size: 0.7em;
+  padding: 10px 0;
+  display: flex;
+  justify-content:space-around;
+}
 
 .btnsearch a {
   background-color: slategray;

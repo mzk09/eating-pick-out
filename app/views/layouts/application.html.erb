@@ -80,6 +80,7 @@
       <% flash.each do |message_type, message| %>
         <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
       <% end %>
+      <h7>※現在登録されている飲食店は架空のものになります※</h7>
       <%= yield %>
     </main>
     <footer>
