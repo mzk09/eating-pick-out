@@ -33,9 +33,9 @@
 					<td><%= f.label :sales_status, "表示ステータス" %></td>
 					<td class="select_field">
 						<%= f.radio_button :is_active, true %>
-						<%= f.label :is_active, "有効", class: "text-active" %>
+						<%= f.label :is_active, "有効", value: true, class: "text-active" %>
 						<%= f.radio_button :is_active, false %>
-						<%= f.label :is_active, "無効", class: "text-invalid" %>
+						<%= f.label :is_active, "無効", value: false, class: "text-invalid" %>
 					</td>
 				</tr>
 			</tbody>

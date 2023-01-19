@@ -13,8 +13,8 @@
 				</tr>
 				<tr>
 					<td>会員ステータス</td>
-					<td><%= f.radio_button :is_deleted, true %><%= f.label :is_deleted, "退会済み", class: "text-active" %></td>
-					<td><%= f.radio_button :is_deleted, false %><%= f.label :is_deleted, "有効", class: "text-invalid" %></td>
+					<td><%= f.radio_button :is_deleted, true %><%= f.label :is_deleted, "退会済み", value: true, class: "text-active" %></td>
+					<td><%= f.radio_button :is_deleted, false %><%= f.label :is_deleted, "有効", value: false, class: "text-invalid" %></td>
 				</tr>
 				<tr>
 					<td><%= f.submit "更新", class: "admin-btn" %></td>
