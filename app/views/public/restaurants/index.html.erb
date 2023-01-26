@@ -14,7 +14,6 @@
         <% @restaurants.each do |restaurant| %>
         <%= link_to restaurant_path(restaurant),'data-turbolinks': false do %>
           <div class="restaurant-content">
-            <!--  <div id="result-label-<%#= "#{shop_counter+1}" %>" class="col-xs-1"></div>-->
             <div class="restaurant">
               <%= restaurant.name %>
             </div>
