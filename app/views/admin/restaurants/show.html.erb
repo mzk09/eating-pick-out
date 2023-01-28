@@ -42,9 +42,45 @@
 					<% end %>
 				</td>
 			</tr>
+			<tr>
+				<td>マップ</td>
+				<td>
+					<div id="map" style="width:400px; height:300px"></div>
+				</td>
+			</tr>
 		</tbody>
 	</table>
 	<div class="admin-btn">
 		<%= link_to "編集する", edit_admin_restaurant_path(@restaurant), class: "btn" %>
 	</div>
+	<!--地図表示-->
+	<script>
+    function initMap(){
+    	let mapPosition = {lat: <%= @restaurant.latitude || 0 %> , lng: <%= @restaurant.longitude || 0 %> };
+      let map = new google.maps.Map(document.getElementById('map'), {
+      	zoom: 15,
+      	center: mapPosition
+      });
+
+      let transitLayer = new google.maps.TransitLayer();
+    	transitLayer.setMap(map);
+
+    	let contentString = '<%= @restaurant.name %>';
+ 			let infowindow = new google.maps.InfoWindow({
+      	content: contentString
+    	});
+
+      let marker = new google.maps.Marker({
+    	  position: mapPosition,
+      	map: map,
+      	title: contentString
+    	});
+
+	    marker.addListener('click', function(){
+  	    infowindow.open(map, marker);
+    	});
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+
 </section>
