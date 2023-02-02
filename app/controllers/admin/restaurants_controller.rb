@@ -19,8 +19,12 @@ class Admin::RestaurantsController < ApplicationController
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
-    @restaurant.save
-    redirect_to admin_restaurant_path(@restaurant), notice: '店舗の登録が完了しました。'
+    if @restaurant.save
+      redirect_to admin_restaurant_path(@restaurant), notice: '店舗の登録が完了しました。'
+    else
+      flash[:alert] = '入力項目が不足しています'
+      render :new
+    end
   end
 
   def show
