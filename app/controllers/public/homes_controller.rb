@@ -18,7 +18,6 @@ class Public::HomesController < ApplicationController
       gon.lat = geo_params[:latitude].to_f
       gon.lng = geo_params[:longitude].to_f
     else
-      # default value
       gon.lat = 35.681236
       gon.lng = 139.767125
     end
@@ -27,12 +26,11 @@ class Public::HomesController < ApplicationController
     radius = 1.5
     @active_restaurants = all_restaurants.active_restaurant
     @restaurants = @active_restaurants.within(radius, origin: [gon.lat, gon.lng]).by_distance(origin: [gon.lat, gon.lng])
+
+    #.jsでrestairants,genreの情報を使用するための関数
     gon.restaurants = @restaurants
     gon.genres = @genres
-
     gon.images = @restaurants.map{|r| r.image_url}
-
-    #gon.total_restaurants_count = @restaurants.all.count
   end
 
   private
