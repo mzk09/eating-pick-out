@@ -299,5 +299,14 @@ p {
   height: 20px;
 }
 
-
+  /*レスポンシブ対応*/
+@media screen and (max-width: 425px) {
+  header{
+    width: 100%;
+  }
+   main {
+    width: 100%;
+    display: block;
+  }
+}
 

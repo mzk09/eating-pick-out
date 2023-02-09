@@ -23,7 +23,7 @@
     <% if params[:genre_id] %>
 			<h6>★<%= @genre.name %>で絞込み中</h6>
 		<% end %>
-    <div class="map" id="search-map" style="height: 500px !important; width: 600px !important;"></div>
+    <div class="map" id="search-map" style="height: 500px; width: 100%;"></div>
     <div class="search-content">
       <input id="address" type="textbox" placeholder='  位置情報、住所、地名等  '>
       <input class="map-btn" type="button" value="マップ位置変更" onclick="getAddress()">
