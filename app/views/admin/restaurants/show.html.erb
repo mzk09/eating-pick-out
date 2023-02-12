@@ -5,51 +5,26 @@
 			<%= image_tag @restaurant.get_image(200,200), id: "img_prev", class: "admin_item_image" %>
 		</div>
 	</div>
-
-	<table class="admin-page">
-		<tbody>
-			<tr>
-				<td>店舗名</td>
-				<td><%= @restaurant.name %></td>
-			</tr>
-			<tr>
-				<td>ジャンル</td>
-				<td><%= link_to @restaurant.genre.name, admin_restaurants_path(genre_id: @restaurant.genre_id), class: "underline" %></td>
-			</tr>
-			<tr>
-				<td>営業時間</td>
-				<td><%= @restaurant.business_time %></td>
-			</tr>
-			<tr>
-				<td>平均予算</td>
-				<td><%= @restaurant.price%>円〜</td>
-			</tr>
-			<tr>
-				<td>電話</td>
-				<td><%= @restaurant.telephone_number %></td>
-			</tr>
-			<tr>
-				<td>住所</td>
-				<td><%= @restaurant.address %></td>
-			</tr>
-			<tr>
-				<td>表示ステータス</td>
-				<td>
+	<div class="restaurant-show">
+		<dl>
+			<dd>店舗名 : <%= @restaurant.name %></dd>
+			<dd>ジャンル : <%= link_to @restaurant.genre.name, restaurants_path(genre_id: @restaurant.genre_id) %></dd>
+			<dd>営業時間 : <%= @restaurant.business_time %></dd>
+			<dd>平均予算 : <%= @restaurant.price%>円〜</dd>
+			<dd>電話 : <%= @restaurant.telephone_number %></dd>
+			<dd>住所 : <%= @restaurant.address %></dd>
+			<dd>
+				表示ステータス : 
 					<% if @restaurant.is_active? %>
 						<span class="text-active">表示中</span>
 					<% else %>
 						<span class="text-invalid">表示停止中</span>
 					<% end %>
-				</td>
-			</tr>
-			<tr>
-				<td>マップ</td>
-				<td>
-					<div id="map" style="width:300px; height:200px"></div>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+			</dd>
+			<dd>マップ : </dd>
+			<div id="map" style="width:300px; height:200px"></div>
+		</dl>
+	</div>
 	<div class="admin-btn">
 		<%= link_to "編集する", edit_admin_restaurant_path(@restaurant), class: "btn" %>
 	</div>
