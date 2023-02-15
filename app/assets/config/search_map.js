@@ -101,13 +101,6 @@ function getAddress(){
             marker.setMap(null);
         }
 
-        //新しくマーカーを作成する
-        // map.addListener(results[0].geometry.location);
-        //     marker = new google.maps.Marker({
-        //     map: map,
-        //     position: results[0].geometry.location,
-        // });
-
         aft = true
 
         document.getElementById('lat').value = results[0].geometry.location.lat();
@@ -245,8 +238,6 @@ updateinfowindow = (restaurantMarker, restaurant, genreName, imageUrl) => {
   // 店舗情報ウィンドウのHTML要素
   const contentHtml =
   '<h4>' + restaurant.name + '</h4>' +
-  // '<div class="restaurant-image">' + restaurant.image +
-  // '<div>'
   '<img src="' + imageUrl + '" width="70" height="70">' +
   '<div class="restaurant-info">' +
     '<h5>住所</h5>' +
