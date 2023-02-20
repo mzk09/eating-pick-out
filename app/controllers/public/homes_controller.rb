@@ -12,8 +12,6 @@ class Public::HomesController < ApplicationController
     else
       all_restaurants = Restaurant.includes(:genre)
     end
-    # @q = Restaurant.ransack(params[:q])
-    # @restaurants = @q.result(distinct: true)
     if params[:lat_lng]
       gon.lat = geo_params[:latitude].to_f
       gon.lng = geo_params[:longitude].to_f

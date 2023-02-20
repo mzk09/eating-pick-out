@@ -198,9 +198,6 @@ initRestaurantInfo = () => {
       animation: google.maps.Animation.DROP
     });
 
-
-
-
     // markerがクリックされた時、
     restaurantMarkers[i].addListener('click', function(){
       //ウィンドウにジャンル表示
